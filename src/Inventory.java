@@ -8,7 +8,7 @@ public class Inventory {
     private ArrayList<Product> productInventory;
     private ArrayList<Integer> productQuant;
 
-    public void Inventory(){
+    public Inventory(){
         ArrayList<Product> productInventory = new ArrayList<Product>();
         ArrayList<Integer> productQuant = new ArrayList<Integer>();
     }
