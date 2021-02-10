@@ -1,7 +1,7 @@
 public class Product {
     private final String NAME;
     private final int ID;
-    private double price;
+    private final double price;
 
     public Product(String name, int id, double price){
         this.NAME = name;

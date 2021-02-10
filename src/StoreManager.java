@@ -2,10 +2,10 @@ import java.util.HashMap;
 
 public class StoreManager {
     //Change back to private
-    public Inventory2 inventory; //Remember to change Inventory2 to Inventory
+    public static Inventory2 inventory; //Remember to change Inventory2 to Inventory
 
     public StoreManager(){
-        Inventory2 inventory = new Inventory2();
+        inventory = new Inventory2();
     }
 
     /**
