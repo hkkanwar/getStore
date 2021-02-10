@@ -29,7 +29,7 @@ public class Main {
         inventory2.addProduct(apple, 10);
         inventory2.removeProduct(01, 2);
         System.out.println(inventory2.getStock(01));
-        System.out.println(inventory2.getProduct(01).getName());
+        System.out.println(inventory2.getProduct(01).getNAME());
         //manager.inventory.addProduct(apple, 20);
         System.out.println(manager.checkStock(apple) + "----");
         manager.processTransaction(shoppingList);
@@ -54,7 +54,7 @@ public class Main {
         inventory2.addProduct(lemon, 10);
         inventory2.addProduct(orange, 10);
         //System.out.println(inventory2.getStock(01));
-        System.out.println(inventory2.getProduct(03).getName());
+        System.out.println(inventory2.getProduct(03).getNAME());
         inventory2.removeProduct(03,10);
         System.out.println(inventory2.getStock(03));
         inventory2.removeProduct(03,10);

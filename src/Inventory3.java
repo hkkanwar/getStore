@@ -20,7 +20,7 @@ public class Inventory3 {
     public int getStock(int productId){
         int stockNum = 0;
         for (int i= 0; i < productInventory.size(); i++){
-            if(productInventory.get(i).getId() == productId){
+            if(productInventory.get(i).getID() == productId){
                 stockNum = productQuant.get(i);
             }
         }
@@ -33,7 +33,7 @@ public class Inventory3 {
     public Product getProduct(int productId){
         Product productInfo = null;
         for (int i= 0; i < productInventory.size(); i++){
-            if(productInventory.get(i).getId() == productId){
+            if(productInventory.get(i).getID() == productId){
                 productInfo = productInventory.get(i);
             }
         }
@@ -49,7 +49,7 @@ public class Inventory3 {
     public void addProduct(Product product, int quantity){
         boolean duplicate = false;
         for (int i= 0; i < productInventory.size(); i++){
-            if(productInventory.get(i).getId() == product.getId()){
+            if(productInventory.get(i).getID() == product.getID()){
                 productQuant.set(i,(productQuant.get(i)+quantity));
                 duplicate=true;
             }
@@ -66,7 +66,7 @@ public class Inventory3 {
      * */
     public void removeProduct(int productId) {
         for (int i = 0; i < productInventory.size(); i++) {
-            if (productInventory.get(i).getId() == productId) {
+            if (productInventory.get(i).getID() == productId) {
                 if (productQuant.get(i) != 0) {
                     productQuant.set(i,(productQuant.get(i) - 1));
                 }
