@@ -1,14 +1,13 @@
+// Harsimran Kanwar 101143556
 // Hussein Elmokdad 101171490
-//Harsimran Kanwar 101143556
 
 import java.util.HashMap;
 
 public class StoreManager {
-    //Change back to private
-    public static Inventory2 inventory; //Remember to change Inventory2 to Inventory
+    private static Inventory inventory;
 
     public StoreManager(){
-        inventory = new Inventory2();
+        inventory = new Inventory();
     }
 
     /**

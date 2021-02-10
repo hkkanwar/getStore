@@ -16,7 +16,7 @@ public class Main {
         Inventory2 inventory2 = new Inventory2();
         Product orange = new Product("Orange", 02, 0.5);
         Product lemon = new Product("Lemon", 03, 0.5);
-        Inventory inventory2 = new Inventory();
+        //Inventory inventory2 = new Inventory();
         //Inventory inv3 = new Inventory();
         //Inventory inventory = new Inventory();
         //inventory.addProduct(apple, 10);
@@ -30,7 +30,7 @@ public class Main {
         inventory2.removeProduct(01, 2);
         System.out.println(inventory2.getStock(01));
         System.out.println(inventory2.getProduct(01).getName());
-        manager.inventory.addProduct(apple, 20);
+        //manager.inventory.addProduct(apple, 20);
         System.out.println(manager.checkStock(apple) + "----");
         manager.processTransaction(shoppingList);
         System.out.println(manager.checkStock(apple) + "----");
