@@ -1,79 +1,76 @@
-// Harsimran Kanwar 101143556
-// Hussein Elmokdad idk ur number??
+//Harsimran Kanwar 101143556
+// Hussein Elmokdad 101171490
 
-import java.util.ArrayList;
-
+import java.util.HashMap;
 
 public class Inventory {
-    private ArrayList<Product> productInventory;
-    private ArrayList<Integer> productQuant;
+
+    public HashMap<Product, Integer> productQuant;
 
     public Inventory(){
-        ArrayList<Product> productInventory = new ArrayList<Product>();
-        ArrayList<Integer> productQuant = new ArrayList<Integer>();
+        Product defaultItem = new Product("Default",00,0.01);
+        productQuant = new HashMap<Product, Integer>();
+        addProduct(defaultItem,10);
     }
 
-    /** Gets the stock of product, given productId (@params)
-    * and returns quantity of stock (@return)
-    */
+    /** Gets the quantity of stock of a given product
+     * @param productId
+     * @return stockNum (quantity of stock) */
     public int getStock(int productId){
         int stockNum = 0;
-        for (int i= 0; i < productInventory.size(); i++){
-            if(productInventory.get(i).getId() == productId){
-                stockNum = productQuant.get(i);
+        for(Product key: productQuant.keySet()){
+            if(key.getId() == productId){
+                stockNum = productQuant.get(key);
             }
         }
         return stockNum;
     }
 
-    /** Gets the stock of product, given productId (@params)
-     * and returns the product object with all details (@return)
-     */
+    /** Gets the stock of product given productId
+     * @param productId
+     * @return productInfo (product object of given id)*/
     public Product getProduct(int productId){
         Product productInfo = null;
-        for (int i= 0; i < productInventory.size(); i++){
-            if(productInventory.get(i).getId() == productId){
-                productInfo = productInventory.get(i);
+        for(Product key: productQuant.keySet()){
+            if(key.getId() == productId){
+                productInfo = key;
             }
         }
         return productInfo;
     }
 
-
-    /** Adds product, given product and quantity (@params)
-     * Checks in case of duplicate, it will update quantity of said product
-     * if new product, will add quantity to productQuant arrayList and add item
-     * to productInventory arrayList. Returns nothing.
-    */
+    /** Adds product to hashmap. The product is stored as the key and
+     * quantity is stored as the value. In case of duplicate, it will update
+     * quantity of said product.Returns nothing
+     * @param product, quantity
+     */
     public void addProduct(Product product, int quantity){
         boolean duplicate = false;
-        for (int i= 0; i < productInventory.size(); i++){
-            if(productInventory.get(i).getId() == product.getId()){
-                productQuant.set(i,(productQuant.get(i)+quantity));
+        for(Product key: productQuant.keySet()){
+            if(key.getId() == product.getId()){
+                productQuant.replace(key,(productQuant.get(key)+quantity));
                 duplicate=true;
             }
         }
         if(!duplicate){
-            productInventory.add(product);
-            productQuant.add(quantity);
+            productQuant.put(product,quantity);
         }
     }
 
-    /** Removes product quantity given ProductID (@params)
-     *  Removes 1 item from inventory (productQuant)
-     *  If quantity is zero, nothing happens. Returns nothing.
+    /** Removes product quantity from HashMap given ProductID and quantity to be removed.
+     * If the quantity is 0, it will stay 0. Returns nothing.
+     * @param productId, quantity
      * */
-    public void removeProduct(int productId) {
-        for (int i = 0; i < productInventory.size(); i++) {
-            if (productInventory.get(i).getId() == productId) {
-                if (productQuant.get(i) != 0) {
-                    productQuant.set(i,(productQuant.get(i) - 1));
+    public void removeProduct(int productId, int quantity) { //We need to update the docstring
+        for(Product key: productQuant.keySet()){
+            if(key.getId() == productId){
+                if (productQuant.get(key) > 0){
+                    productQuant.replace(key, (productQuant.get(key) - quantity));
+                }else {
+                    productQuant.replace(key, 0);
                 }
             }
         }
     }
 
-
 }
-
-

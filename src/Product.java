@@ -1,21 +1,29 @@
+// Harsimran Kanwar 101143556
+// Hussein Elmokdad 101171490
+
 public class Product {
     private final String NAME;
     private final int ID;
-    private double price;
+    private final double PRICE;
 
     public Product(String name, int id, double price){
         this.NAME = name;
         this.ID = id;
-        this.price = price;
+        this.PRICE = price;
     }
 
+    /** Get the name of product
+     * @return NAME
+     */
     public String getName() { return NAME; }
 
-    public int getId() {
-        return ID;
-    }
+    /** Get the id of product
+     * @return ID
+     */
+    public int getId() { return ID; }
 
-    public double getPrice() {
-        return price;
-    }
+    /** Get the price of product
+     * @return PRICE
+     */
+    public double getPrice() { return PRICE; }
 }
