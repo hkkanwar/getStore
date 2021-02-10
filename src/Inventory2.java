@@ -5,11 +5,12 @@ import java.util.HashMap;
 
 public class Inventory2 {
 
-    private HashMap<Product, Integer> productQuant;
+    public HashMap<Product, Integer> productQuant;
     // What do they mean by
     // "set  the  contents  of  the  Inventory  to  some  default  values  upon  object creation"?
     public Inventory2(){
-        HashMap<Product, Integer> productQuant = new HashMap<Product, Integer>();
+        productQuant = new HashMap<Product, Integer>();
+        //System.out.println(getStock(02));
     }
 
     /** Gets the stock of product, given productId (@params)

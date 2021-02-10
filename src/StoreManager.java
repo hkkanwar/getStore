@@ -1,10 +1,12 @@
 import java.util.HashMap;
 
 public class StoreManager {
-    //Should it be static?
-    private static Inventory2 inventory; //Remember to change Inventory2 to Inventory
+    //Change back to private
+    public Inventory2 inventory; //Remember to change Inventory2 to Inventory
 
-    public StoreManager(Inventory2 inv){ inventory = inv; }
+    public StoreManager(){
+        Inventory2 inventory = new Inventory2();
+    }
 
     /**
      * Gets the number of available stock for a product
