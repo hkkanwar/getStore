@@ -9,6 +9,7 @@ public class StoreManager {
     }
 
     //Should I change it to checkStock?
+    //Yes because getStock already exists in inventory?-h
     public int getStock(Product product){
         return 0;
     }
