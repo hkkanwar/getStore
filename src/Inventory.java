@@ -1,4 +1,4 @@
-//Harsimran Kanwar 101143556
+// Harsimran Kanwar 101143556
 // Hussein Elmokdad 101171490
 
 import java.util.HashMap;
@@ -8,9 +8,13 @@ public class Inventory {
     public HashMap<Product, Integer> productQuant;
 
     public Inventory(){
-        Product defaultItem = new Product("Default",00,0.01);
+        Product apple = new Product("Apple",01,0.5);
+        Product orange = new Product("Orange",02,1.2);
+        Product lemon = new Product("Lemon",03,0.8);
         productQuant = new HashMap<Product, Integer>();
-        addProduct(defaultItem,10);
+        addProduct(apple,10);
+        addProduct(orange,5);
+        addProduct(lemon,5);
     }
 
     /** Gets the quantity of stock of a given product
@@ -19,7 +23,7 @@ public class Inventory {
     public int getStock(int productId){
         int stockNum = 0;
         for(Product key: productQuant.keySet()){
-            if(key.getId() == productId){
+            if(key.getID() == productId){
                 stockNum = productQuant.get(key);
             }
         }
@@ -32,7 +36,7 @@ public class Inventory {
     public Product getProduct(int productId){
         Product productInfo = null;
         for(Product key: productQuant.keySet()){
-            if(key.getId() == productId){
+            if(key.getID() == productId){
                 productInfo = key;
             }
         }
@@ -47,7 +51,7 @@ public class Inventory {
     public void addProduct(Product product, int quantity){
         boolean duplicate = false;
         for(Product key: productQuant.keySet()){
-            if(key.getId() == product.getId()){
+            if(key.getID() == product.getID()){
                 productQuant.replace(key,(productQuant.get(key)+quantity));
                 duplicate=true;
             }
@@ -63,7 +67,7 @@ public class Inventory {
      * */
     public void removeProduct(int productId, int quantity) { //We need to update the docstring
         for(Product key: productQuant.keySet()){
-            if(key.getId() == productId){
+            if(key.getID() == productId){
                 if (productQuant.get(key) > 0){
                     productQuant.replace(key, (productQuant.get(key) - quantity));
                 }else {

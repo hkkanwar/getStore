@@ -1,14 +1,13 @@
+// Harsimran Kanwar 101143556
 // Hussein Elmokdad 101171490
-//Harsimran Kanwar 101143556
 
 import java.util.HashMap;
 
 public class StoreManager {
-    //Change back to private
-    public Inventory inventory; //Remember to change Inventory2 to Inventory
+    private static Inventory inventory;
 
     public StoreManager(){
-        Inventory inventory = new Inventory();
+        inventory = new Inventory();
     }
 
     /**
@@ -17,7 +16,7 @@ public class StoreManager {
      * @param product to check for
      * @return number of stock
      */
-    public int checkStock(Product product){ return inventory.getStock(product.getId()); }
+    public int checkStock(Product product){ return inventory.getStock(product.getID()); }
 
     /**
      * Processes the transaction by removing a specific quantity of items
@@ -30,10 +29,10 @@ public class StoreManager {
     public int processTransaction(HashMap<Product, Integer> shoppingList) {
         int sum = 0;
         for (Product item : shoppingList.keySet()) {
-            if (shoppingList.get(item) > inventory.getStock(item.getId())) return -1;
+            if (shoppingList.get(item) > inventory.getStock(item.getID())) return -1;
         }
         for (Product item : shoppingList.keySet()) {
-            inventory.removeProduct(item.getId(), shoppingList.get(item));
+            inventory.removeProduct(item.getID(), shoppingList.get(item));
             sum += shoppingList.get(item);
         }
         return sum;

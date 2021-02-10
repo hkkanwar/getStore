@@ -15,15 +15,15 @@ public class Product {
     /** Get the name of product
      * @return NAME
      */
-    public String getName() { return NAME; }
+    public String getNAME() { return NAME; }
 
     /** Get the id of product
      * @return ID
      */
-    public int getId() { return ID; }
+    public int getID() { return ID; }
 
     /** Get the price of product
      * @return PRICE
      */
-    public double getPrice() { return PRICE; }
+    public double getPRICE() { return PRICE; }
 }

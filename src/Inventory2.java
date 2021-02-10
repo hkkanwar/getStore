@@ -1,5 +1,5 @@
 //Harsimran Kanwar 101143556
-// Hussein Elmokdad idk ur number??
+//Hussein Elmokdad idk ur number??
 
 import java.util.HashMap;
 
@@ -19,7 +19,7 @@ public class Inventory2 {
     public int getStock(int productId){
         int stockNum = 0;
         for(Product key: productQuant.keySet()){
-            if(key.getId() == productId){
+            if(key.getID() == productId){
                 stockNum = productQuant.get(key);
             }
         }
@@ -32,7 +32,7 @@ public class Inventory2 {
     public Product getProduct(int productId){
         Product productInfo = null;
         for(Product key: productQuant.keySet()){
-            if(key.getId() == productId){
+            if(key.getID() == productId){
                 productInfo = key;
             }
         }
@@ -47,7 +47,7 @@ public class Inventory2 {
     public void addProduct(Product product, int quantity){
         boolean duplicate = false;
         for(Product key: productQuant.keySet()){
-            if(key.getId() == product.getId()){
+            if(key.getID() == product.getID()){
                 productQuant.replace(key,(productQuant.get(key)+quantity));
                 duplicate=true;
             }
@@ -63,7 +63,7 @@ public class Inventory2 {
      * */
     public void removeProduct(int productId, int quantity) { //We need to update the docstring
         for(Product key: productQuant.keySet()){
-            if(key.getId() == productId){
+            if(key.getID() == productId){
                 productQuant.replace(key,(productQuant.get(key) - quantity));
                 if (productQuant.get(key) < 0) productQuant.replace(key, 0);
             }
