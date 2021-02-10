@@ -6,7 +6,8 @@ import java.util.HashMap;
 public class Inventory2 {
 
     private HashMap<Product, Integer> productQuant;
-
+    // What do they mean by
+    // "set  the  contents  of  the  Inventory  to  some  default  values  upon  object creation"?
     public Inventory2(){
         HashMap<Product, Integer> productQuant = new HashMap<Product, Integer>();
     }
@@ -59,12 +60,11 @@ public class Inventory2 {
      *  Removes 1 item from inventory (productQuant)
      *  If quantity is zero, nothing happens. Returns nothing.
      * */
-    public void removeProduct(int productId) {
+    public void removeProduct(int productId, int quantity) { //We need to update the docstring
         for(Product key: productQuant.keySet()){
             if(key.getId() == productId){
-                if (productQuant.get(key) != 0) {
-                    productQuant.replace(key,(productQuant.get(key) - 1));
-                }
+                productQuant.replace(key,(productQuant.get(key) - quantity));
+                if (productQuant.get(key) < 0) productQuant.replace(key, 0);
             }
         }
     }
