@@ -17,7 +17,7 @@ public class Inventory2 {
     public int getStock(int productId){
         int stockNum = 0;
         for(Product key: productQuant.keySet()){
-            if(key.getID() == productId){
+            if(key.getId() == productId){
                 stockNum = productQuant.get(key);
             }
         }
@@ -30,7 +30,7 @@ public class Inventory2 {
     public Product getProduct(int productId){
         Product productInfo = null;
         for(Product key: productQuant.keySet()){
-            if(key.getID() == productId){
+            if(key.getId() == productId){
                 productInfo = key;
             }
         }
@@ -45,7 +45,7 @@ public class Inventory2 {
     public void addProduct(Product product, int quantity){
         boolean duplicate = false;
         for(Product key: productQuant.keySet()){
-            if(key.getID() == product.getID()){
+            if(key.getId() == product.getId()){
                 productQuant.replace(key,(productQuant.get(key)+quantity));
                 duplicate=true;
             }
@@ -61,7 +61,7 @@ public class Inventory2 {
      * */
     public void removeProduct(int productId) {
         for(Product key: productQuant.keySet()){
-            if(key.getID() == productId){
+            if(key.getId() == productId){
                 if (productQuant.get(key) != 0) {
                     productQuant.replace(key,(productQuant.get(key) - 1));
                 }
