@@ -1,15 +1,15 @@
 public class Product {
-    private String name;
-    private int ID;
+    private final String NAME;
+    private final int ID;
     private double price;
 
     public Product(String name, int ID, double price){
-        this.name = name;
+        this.NAME = name;
         this.ID = ID;
         this.price = price;
     }
 
-    public String getName() { return name; }
+    public String getName() { return NAME; }
 
     public int getID() {
         return ID;
