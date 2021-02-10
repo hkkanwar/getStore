@@ -1,3 +1,6 @@
+// Hussein Elmokdad 101171490
+//Harsimran Kanwar 101143556
+
 import java.util.HashMap;
 
 public class StoreManager {
