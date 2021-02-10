@@ -13,7 +13,7 @@ public class Main {
         ID.nextInt();
         Product apple = new Product("Apple", 01, 0.5);
         shoppingList.put(apple, 5);
-        Inventory2 inventory2 = new Inventory2();
+        Inventory inventory2 = new Inventory();
         Product orange = new Product("Orange", 02, 0.5);
         Product lemon = new Product("Lemon", 03, 0.5);
         //Inventory inventory2 = new Inventory();
