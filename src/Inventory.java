@@ -68,11 +68,8 @@ public class Inventory {
     public void removeProduct(int productId, int quantity) { //We need to update the docstring
         for(Product key: productQuant.keySet()){
             if(key.getId() == productId){
-                if (productQuant.get(key) > 0){
-                    productQuant.replace(key, (productQuant.get(key) - quantity));
-                }else {
-                    productQuant.replace(key, 0);
-                }
+                productQuant.replace(key, (productQuant.get(key) - quantity));
+                if (productQuant.get(key) < 0) productQuant.replace(key, 0);
             }
         }
     }
