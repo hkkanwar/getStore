@@ -2,28 +2,28 @@
 // Hussein Elmokdad 101171490
 
 public class Product {
-    private final String NAME;
-    private final int ID;
-    private final double PRICE;
+    private final String name;
+    private final int id;
+    private final double price;
 
     public Product(String name, int id, double price){
-        this.NAME = name;
-        this.ID = id;
-        this.PRICE = price;
+        this.name = name;
+        this.id = id;
+        this.price = price;
     }
 
     /** Get the name of product
      * @return NAME
      */
-    public String getNAME() { return NAME; }
+    public String getName() { return name; }
 
     /** Get the id of product
      * @return ID
      */
-    public int getID() { return ID; }
+    public int getId() { return id; }
 
     /** Get the price of product
      * @return PRICE
      */
-    public double getPRICE() { return PRICE; }
+    public double getPrice() { return price; }
 }
