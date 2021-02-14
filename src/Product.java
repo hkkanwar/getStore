@@ -6,6 +6,12 @@ public class Product {
     private final int id;
     private final double price;
 
+    /**
+     *
+     * @param name
+     * @param id
+     * @param price
+     */
     public Product(String name, int id, double price){
         this.name = name;
         this.id = id;

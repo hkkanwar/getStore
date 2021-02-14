@@ -7,6 +7,9 @@ public class Inventory {
 
     public HashMap<Product, Integer> productQuant;
 
+    /**
+     *
+     */
     public Inventory(){
         Product apple = new Product("Apple",01,0.5);
         Product orange = new Product("Orange",02,1.2);

@@ -5,7 +5,11 @@ import java.util.HashMap;
 
 public class StoreManager {
     private static Inventory inventory;
+    private int cartID = 0;
 
+    /**
+     *
+     */
     public StoreManager(){
         inventory = new Inventory();
     }
@@ -36,6 +40,15 @@ public class StoreManager {
             sum += shoppingList.get(item);
         }
         return sum;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int assignNewCartID(){
+        cartID++;
+        return cartID;
     }
 
 }
