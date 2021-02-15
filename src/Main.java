@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        /*
         HashMap<Product, Integer> shoppingList = new HashMap<Product, Integer>();
         System.out.println("Testing Inventory");
         System.out.println("Enter product name:");
@@ -48,8 +49,6 @@ public class Main {
         System.out.println(manager.checkStock(apple) + "----");
         System.out.println(manager.processTransaction(shoppingList) + "----");
 
-
-
         inventory2.addProduct(orange, 10);
         inventory2.addProduct(lemon, 10);
         inventory2.addProduct(orange, 10);
@@ -60,6 +59,19 @@ public class Main {
         inventory2.removeProduct(03,10);
         System.out.println(inventory2.getStock(03));
         //System.out.println(inv3.getProduct(00).getName());
+         */
+        Product apple = new Product("Apple", 01, 0.5);
+        StoreManager sm = new StoreManager();
+        StoreView view0 = new StoreView(sm, sm.assignNewCartID());
+        StoreView view1 = new StoreView(sm, sm.assignNewCartID());
+
+        view0.storeManager.addItemToCart(apple, 2, view0.getCartID());
+        //view0.storeManager.removeItemFromCart(apple, 5, view0.getCartID());
+
+        view1.storeManager.addItemToCart(apple, 5, view0.getCartID());
+        view1.storeManager.removeItemFromCart(apple, 900, view0.getCartID());
+
+        System.out.println(sm.checkStock(apple));
 
     }
 }

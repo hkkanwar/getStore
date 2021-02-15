@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class StoreManager {
     private static Inventory inventory;
-    private int cartID;
+    private int cartIdCounter;
     private ArrayList<ShoppingCart> shoppingCartArray;
 
     /**
@@ -15,7 +15,7 @@ public class StoreManager {
     public StoreManager(){
         inventory = new Inventory();
         shoppingCartArray = new ArrayList<ShoppingCart>();
-        cartID = -1;
+        cartIdCounter = -1;
     }
 
     /**
@@ -54,20 +54,19 @@ public class StoreManager {
     public void addItemToCart(Product product, int quantity, int cartID){
         ShoppingCart shoppingCart = shoppingCartArray.get(cartID);
         HashMap<Product, Integer> cart = shoppingCart.getCart();
-        //Check if there is enough stock in inventory
-        checkStock(product);
-        boolean isDuplicate = false;
-        for(Product item: cart.keySet()){
-            if(item.getId() == product.getId()){
-                cart.replace(item, (cart.get(item)+quantity));
-                isDuplicate=true;
+        if(quantity <= checkStock(product)){
+            boolean isDuplicate = false;
+            for(Product item: cart.keySet()){
+                if(item.getId() == product.getId()){
+                    cart.replace(item, (cart.get(item)+quantity));
+                    isDuplicate=true;
+                }
             }
+            if(!isDuplicate){
+                cart.put(product,quantity);
+            }
+            inventory.removeProduct(product.getId(), quantity);
         }
-        if(!isDuplicate){
-            cart.put(product,quantity);
-        }
-
-        //Remove items from inventory
     }
 
     /**
@@ -75,16 +74,19 @@ public class StoreManager {
      * @param product
      * @param quantity
      */
-    public void removeItemFromCart(Product product, int quantity){
+    public void removeItemFromCart(Product product, int quantity, int cartID){
         ShoppingCart shoppingCart = shoppingCartArray.get(cartID);
         HashMap<Product, Integer> cart = shoppingCart.getCart();
+        int actualQuantity = 0;
         for(Product item: cart.keySet()){
             if(item.getId() == product.getId()){
+                if (quantity > cart.get(item)) actualQuantity = cart.get(item);
+                else actualQuantity = quantity;
                 cart.replace(item, (cart.get(item) - quantity));
                 if (cart.get(item) <= 0) cart.remove(item); //Should we remove it or set it to 0?
             }
         }
-        //Add items back to inventory
+        inventory.addProduct(product, actualQuantity);
     }
 
     /**
@@ -92,8 +94,10 @@ public class StoreManager {
      * @return
      */
     public int assignNewCartID(){
-        cartID++;
-        return cartID;
+        cartIdCounter++;
+        ShoppingCart newCart = new ShoppingCart();
+        shoppingCartArray.add(newCart);
+        return cartIdCounter;
     }
 
 }

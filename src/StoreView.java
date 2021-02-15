@@ -2,7 +2,7 @@
 
 public class StoreView {
 
-    private StoreManager storeManager;
+    public StoreManager storeManager; //Change back to private
     private int cartID;
 
     /**
@@ -27,6 +27,10 @@ public class StoreView {
      *
      */
     public void displayGUI(){
+
+    }
+
+    public static void main(String[] args) {
 
     }
 }
