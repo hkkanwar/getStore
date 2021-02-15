@@ -1,17 +1,21 @@
 // Harsimran Kanwar 101143556
 // Hussein Elmokdad 101171490
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class StoreManager {
     private static Inventory inventory;
-    private int cartID = 0;
+    private int cartID;
+    private ArrayList<ShoppingCart> shoppingCartArray;
 
     /**
      *
      */
     public StoreManager(){
         inventory = new Inventory();
+        shoppingCartArray = new ArrayList<ShoppingCart>();
+        cartID = -1;
     }
 
     /**
@@ -40,6 +44,47 @@ public class StoreManager {
             sum += shoppingList.get(item);
         }
         return sum;
+    }
+
+    /**
+     *
+     * @param product
+     * @param quantity
+     */
+    public void addItemToCart(Product product, int quantity, int cartID){
+        ShoppingCart shoppingCart = shoppingCartArray.get(cartID);
+        HashMap<Product, Integer> cart = shoppingCart.getCart();
+        //Check if there is enough stock in inventory
+        checkStock(product);
+        boolean isDuplicate = false;
+        for(Product item: cart.keySet()){
+            if(item.getId() == product.getId()){
+                cart.replace(item, (cart.get(item)+quantity));
+                isDuplicate=true;
+            }
+        }
+        if(!isDuplicate){
+            cart.put(product,quantity);
+        }
+
+        //Remove items from inventory
+    }
+
+    /**
+     *
+     * @param product
+     * @param quantity
+     */
+    public void removeItemFromCart(Product product, int quantity){
+        ShoppingCart shoppingCart = shoppingCartArray.get(cartID);
+        HashMap<Product, Integer> cart = shoppingCart.getCart();
+        for(Product item: cart.keySet()){
+            if(item.getId() == product.getId()){
+                cart.replace(item, (cart.get(item) - quantity));
+                if (cart.get(item) <= 0) cart.remove(item); //Should we remove it or set it to 0?
+            }
+        }
+        //Add items back to inventory
     }
 
     /**
