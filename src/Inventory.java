@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Inventory {
 
-    public HashMap<Product, Integer> productQuant;
+    private HashMap<Product, Integer> productQuant;
 
     /**
      *
@@ -77,4 +77,11 @@ public class Inventory {
         }
     }
 
+    /**
+     *
+     * @return
+     */
+    public HashMap<Product, Integer> getProductQuant() {
+        return productQuant;
+    }
 }

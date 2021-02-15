@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class StoreManager {
     private static Inventory inventory;
     private int cartIdCounter;
-    private ArrayList<ShoppingCart> shoppingCartArray;
+    public ArrayList<ShoppingCart> shoppingCartArray; //Change back to private
 
     /**
      *
@@ -98,6 +98,20 @@ public class StoreManager {
         ShoppingCart newCart = new ShoppingCart();
         shoppingCartArray.add(newCart);
         return cartIdCounter;
+    }
+
+    /**
+     *
+     */
+    public ArrayList<Product> showInventory(){
+        ArrayList<Product> productsArray = new ArrayList<Product>();
+        for(Product item : inventory.getProductQuant().keySet()){
+            productsArray.add(item);
+        }
+        for(Product item: productsArray){
+            System.out.println(item.getName() + "(" + productsArray.indexOf(item) + ")");
+        }
+        return productsArray;
     }
 
 }
