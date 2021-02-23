@@ -1,4 +1,5 @@
-//Hussein El Mokdad 101171490
+// Harsimran Kanwar 101143556
+// Hussein Elmokdad 101171490
 
 import java.util.Scanner;
 
