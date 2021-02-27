@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class StoreManager {
-    private static Inventory inventory;
+    public static Inventory inventory; //Change back to private
     private int cartIdCounter;
     public ArrayList<ShoppingCart> shoppingCartArray; //Change back to private
 

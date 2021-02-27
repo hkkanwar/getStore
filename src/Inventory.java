@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Inventory {
 
-    private HashMap<Product, Integer> productQuant;
+    public HashMap<Product, Integer> productQuant; //Change back to private
 
     /**
      *
@@ -22,28 +22,28 @@ public class Inventory {
 
     /** Gets the quantity of stock of a given product
      * @param productId
-     * @return stockNum (quantity of stock) */
+     * @return quantity of stock
+     */
     public int getStock(int productId){
-        int stockNum = 0;
         for(Product key: productQuant.keySet()){
             if(key.getId() == productId){
-                stockNum = productQuant.get(key);
+                return productQuant.get(key);
             }
         }
-        return stockNum;
+        return 0;
     }
 
     /** Gets the stock of product given productId
      * @param productId
-     * @return productInfo (product object of given id)*/
+     * @return product object of given id
+     */
     public Product getProduct(int productId){
-        Product productInfo = null;
         for(Product key: productQuant.keySet()){
             if(key.getId() == productId){
-                productInfo = key;
+                return key;
             }
         }
-        return productInfo;
+        return null;
     }
 
     /** Adds product to hashmap. The product is stored as the key and
@@ -52,16 +52,10 @@ public class Inventory {
      * @param product, quantity
      */
     public void addProduct(Product product, int quantity){
-        boolean duplicate = false;
-        for(Product key: productQuant.keySet()){
-            if(key.getId() == product.getId()){
-                productQuant.replace(key,(productQuant.get(key)+quantity));
-                duplicate=true;
-            }
+        if(productQuant.containsKey(product)){
+            productQuant.replace(product, productQuant.get(product) + quantity);
         }
-        if(!duplicate){
-            productQuant.put(product,quantity);
-        }
+        else productQuant.put(product, quantity);
     }
 
     /** Removes product quantity from HashMap given ProductID and quantity to be removed.

@@ -63,11 +63,12 @@ public class Main {
          */
 
         Product apple = new Product("Apple", 01, 0.5);
+        Product apple1 = new Product("Apple", 01, 0.5);
         StoreManager sm = new StoreManager();
         StoreView view0 = new StoreView(sm, sm.assignNewCartID());
         StoreView view1 = new StoreView(sm, sm.assignNewCartID());
 
-        view0.displayGUI();
+        //view0.displayGUI();
         /*view0.storeManager.addItemToCart(apple, 2, view0.getCartID());
         view0.storeManager.removeItemFromCart(apple, 5, view0.getCartID());
 
@@ -80,8 +81,9 @@ public class Main {
         System.out.println(sm.shoppingCartArray.get(1).getCart().keySet());
 
          */
-
-
+        sm.inventory.addProduct(apple, 10);
+        sm.inventory.addProduct(apple, 2);
+        sm.inventory.addProduct(apple1, 3);
     }
 
 }
