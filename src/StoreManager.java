@@ -35,13 +35,11 @@ public class StoreManager {
      * @return the total number of processed items.
      */
     public int processTransaction(HashMap<Product,Integer> shoppingList) {
-        int sum = 0;
+        int sum = 0; //We need to remember to edit the docstring
+        System.out.println("Purchased items: ");
         for (Product item : shoppingList.keySet()) {
-            if (shoppingList.get(item) > inventory.getStock(item.getId())) return -1;
-        }
-        for (Product item : shoppingList.keySet()) {
-            inventory.removeProduct(item.getId(), shoppingList.get(item));
             sum += shoppingList.get(item);
+            System.out.println(item.getName() + " - " + shoppingList.get(item));
         }
         return sum;
     }
@@ -55,16 +53,10 @@ public class StoreManager {
         ShoppingCart shoppingCart = shoppingCartArray.get(cartID);
         HashMap<Product, Integer> cart = shoppingCart.getCart();
         if(quantity <= checkStock(product)){
-            boolean isDuplicate = false;
-            for(Product item: cart.keySet()){
-                if(item.getId() == product.getId()){
-                    cart.replace(item, (cart.get(item)+quantity));
-                    isDuplicate=true;
-                }
+            if(cart.containsKey(product)){
+                cart.replace(product, cart.get(product) + quantity);
             }
-            if(!isDuplicate){
-                cart.put(product,quantity);
-            }
+            else cart.put(product, quantity);
             inventory.removeProduct(product.getId(), quantity);
         }
     }
@@ -78,14 +70,10 @@ public class StoreManager {
         ShoppingCart shoppingCart = shoppingCartArray.get(cartID);
         HashMap<Product, Integer> cart = shoppingCart.getCart();
         int actualQuantity = 0;
-        for(Product item: cart.keySet()){
-            if(item.getId() == product.getId()){
-                if (quantity > cart.get(item)) actualQuantity = cart.get(item);
-                else actualQuantity = quantity;
-                cart.replace(item, (cart.get(item) - quantity));
-                if (cart.get(item) <= 0) cart.remove(item); //Should we remove it or set it to 0?
-            }
-        }
+        if (quantity > cart.get(product)) actualQuantity = cart.get(product); //If the quantity the user inputs is greater than that in the cart, it will remove all the items of that product
+        else actualQuantity = quantity;
+        cart.replace(product, (cart.get(product) - quantity));
+        if (cart.get(product) <= 0) cart.remove(product); //Should we remove it or set it to 0?
         inventory.addProduct(product, actualQuantity);
     }
 
