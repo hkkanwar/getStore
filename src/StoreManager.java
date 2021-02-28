@@ -97,7 +97,7 @@ public class StoreManager {
             productsArray.add(item);
         }
         for(Product item: productsArray){
-            System.out.println(item.getName() + "(" + productsArray.indexOf(item) + ")");
+            System.out.println(item.getName() + " (" + productsArray.indexOf(item) + ")");
         }
         return productsArray;
     }

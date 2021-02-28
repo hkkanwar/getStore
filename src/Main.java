@@ -68,7 +68,7 @@ public class Main {
         StoreView view0 = new StoreView(sm, sm.assignNewCartID());
         StoreView view1 = new StoreView(sm, sm.assignNewCartID());
 
-        //view0.displayGUI();
+        view0.displayGUI();
         /*view0.storeManager.addItemToCart(apple, 2, view0.getCartID());
         view0.storeManager.removeItemFromCart(apple, 5, view0.getCartID());
 

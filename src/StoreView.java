@@ -30,18 +30,26 @@ public class StoreView {
      *
      */
     public void displayGUI(){
+
+
         System.out.println("Pick an item:");
         storeManager.showInventory();
-        System.out.print(">>>");
+        System.out.print(">>> ");
         Scanner option = new Scanner(System.in);
         int pickedOption = option.nextInt();
+
         System.out.print("Enter quantity: ");
         Scanner quantity = new Scanner(System.in);
         int quantityNum = quantity.nextInt();
-
     }
     /*
     public static void main(String[] args) {
+
+        REMEMBER THAT THIS IS A STATIC METHOD!!!
+
+        System.out.println("Choose your StoreView: ");
+        Scanner storeView = new Scanner(System.in);
+        int storeViewNum = storeView.nextInt();
         Product apple = new Product("Apple", 01, 0.5);
         StoreManager sm = new StoreManager();
         StoreView view0 = new StoreView(sm, sm.assignNewCartID());
