@@ -1,5 +1,8 @@
-// Harsimran Kanwar 101143556
-// Hussein Elmokdad 101171490
+/**
+ * @author Harsimran Kanwar 101143556,
+ * @author Hussein Elmokdad 101171490
+ * @version 1.0
+ */
 
 public class Product {
     private final String name;
@@ -7,7 +10,7 @@ public class Product {
     private final double price;
 
     /**
-     *
+     * Product Constructor
      * @param name
      * @param id
      * @param price

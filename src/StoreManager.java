@@ -1,5 +1,8 @@
-// Harsimran Kanwar 101143556
-// Hussein Elmokdad 101171490
+/**
+ * @author Harsimran Kanwar 101143556,
+ * @author Hussein Elmokdad 101171490
+ * @version 1.0
+ */
 
 import java.util.ArrayList;
 import java.util.HashMap;
