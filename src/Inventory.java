@@ -1,15 +1,19 @@
-// Harsimran Kanwar 101143556
-// Hussein Elmokdad 101171490
+/**
+ * @author Harsimran Kanwar 101143556,
+ * @author Hussein Elmokdad 101171490
+ * @version 1.0
+ */
 
 import java.util.HashMap;
 
+/**
+ * Inventory Class
+ * */
 public class Inventory {
 
     public HashMap<Product, Integer> productQuant; //Change back to private
 
-    /**
-     *
-     */
+    /** Default constructor for Inventory */
     public Inventory(){
         Product apple = new Product("Apple",01,0.5);
         Product orange = new Product("Orange",02,1.2);
@@ -72,8 +76,8 @@ public class Inventory {
     }
 
     /**
-     *
-     * @return
+     * Get all products in Inventory
+     * @return productQuant
      */
     public HashMap<Product, Integer> getProductQuant() {
         return productQuant;
