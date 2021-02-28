@@ -80,6 +80,10 @@ public class StoreManager {
         inventory.addProduct(product, actualQuantity);
     }
 
+    public HashMap<Product, Integer> getCart(int cartID){
+        return shoppingCartArray.get(cartID).getCart();
+    }
+
     /**
      *
      * @return
@@ -95,12 +99,29 @@ public class StoreManager {
      *
      */
     public ArrayList<Product> showInventory(){
-        ArrayList<Product> productsArray = new ArrayList<Product>();
+        ArrayList<Product> productsArray = new ArrayList<Product>(); //Products in inventory
         for(Product item : inventory.getProductQuant().keySet()){
             productsArray.add(item);
         }
         for(Product item: productsArray){
-            System.out.println(item.getName() + " (" + productsArray.indexOf(item) + ")");
+            System.out.println("(" + productsArray.indexOf(item) + ") " + item.getName() + " Stock: " +checkStock(item));
+        }
+        return productsArray;
+    }
+
+    /**
+     * Returns and prints the contents of a cart
+     * @param cartID
+     */
+    public ArrayList<Product> showCart(int cartID){
+        ShoppingCart shoppingCart = shoppingCartArray.get(cartID);
+        HashMap<Product, Integer> cart = shoppingCart.getCart();
+        ArrayList<Product> productsArray = new ArrayList<Product>(); //Products in cart
+        for(Product item : cart.keySet()){
+            productsArray.add(item);
+        }
+        for(Product item: cart.keySet()){
+            System.out.println("(" + productsArray.indexOf(item) + ") " + item.getName() + ", quantity: " + cart.get(item));
         }
         return productsArray;
     }
