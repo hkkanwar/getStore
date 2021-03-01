@@ -24,17 +24,17 @@ public class Product {
     }
 
     /** Get the name of product
-     * @return NAME
+     * @return name
      */
     public String getName() { return name; }
 
     /** Get the id of product
-     * @return ID
+     * @return id
      */
     public int getId() { return id; }
 
     /** Get the price of product
-     * @return PRICE
+     * @return price
      */
     public double getPrice() { return price; }
 

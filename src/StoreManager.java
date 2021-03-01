@@ -13,7 +13,7 @@ public class StoreManager {
     public ArrayList<ShoppingCart> shoppingCartArray; //Change back to private
 
     /**
-     *
+     *Default constructor for StoreManager
      */
     public StoreManager(){
         inventory = new Inventory();
@@ -23,8 +23,7 @@ public class StoreManager {
 
     /**
      * Gets the number of available stock for a product
-     *
-     * @param product to check for
+     * @param product   Product object to check for
      * @return number of stock
      */
     public int checkStock(Product product){ return inventory.getStock(product.getId()); }
@@ -33,9 +32,8 @@ public class StoreManager {
      * Processes the transaction by removing a specific quantity of items
      * from the inventory. Returns -1 if the quantity of an item is more
      * than the available stock
-     *
-     * @param shoppingList with the items to process
-     * @return the total number of processed items.
+     * @param shoppingList  ArrayList of  items to process
+     * @return sum      int value of the total number of processed items.
      */
     public int processTransaction(HashMap<Product,Integer> shoppingList) {
         int sum = 0; //We need to remember to edit the docstring
@@ -48,9 +46,10 @@ public class StoreManager {
     }
 
     /**
-     *
-     * @param product
-     * @param quantity
+     *Adds item to shopping cart and updates inventory accordingly.
+     * Returns nothing
+     * @param product   Product object to add to cart
+     * @param quantity  int value of amount to add to cart
      */
     public void addItemToCart(Product product, int quantity, int cartID){
         ShoppingCart shoppingCart = shoppingCartArray.get(cartID);
@@ -65,9 +64,11 @@ public class StoreManager {
     }
 
     /**
-     *
-     * @param product
-     * @param quantity
+     *Removes item from shopping cart and updates inventory accordingly.
+     * Returns nothing
+     * @param product   Product object to remove
+     * @param quantity  int value of amount needed to remove from cart
+     * @param cartID    int value of shoppingCart id
      */
     public void removeItemFromCart(Product product, int quantity, int cartID){
         ShoppingCart shoppingCart = shoppingCartArray.get(cartID);
@@ -76,17 +77,21 @@ public class StoreManager {
         if (quantity > cart.get(product)) actualQuantity = cart.get(product); //If the quantity the user inputs is greater than that in the cart, it will remove all the items of that product
         else actualQuantity = quantity;
         cart.replace(product, (cart.get(product) - quantity));
-        if (cart.get(product) <= 0) cart.remove(product); //Should we remove it or set it to 0?
+        if (cart.get(product) <= 0) cart.remove(product); //Should we remove it or set it to 0? set to 0?
         inventory.addProduct(product, actualQuantity);
     }
 
+    /**
+     *Returns all items in cart
+     * @return cartIdCounter
+     */
     public HashMap<Product, Integer> getCart(int cartID){
-        return shoppingCartArray.get(cartID).getCart();
+        return shoppingCartArray.get(cartID).getCart(); //couldn't we just do super?
     }
 
     /**
-     *
-     * @return
+     *Assigns new id to shopping cart
+     * @return cartIdCounter
      */
     public int assignNewCartID(){
         cartIdCounter++;
@@ -96,7 +101,8 @@ public class StoreManager {
     }
 
     /**
-     *
+     * Returns a list of all the items in inventory
+     * @return productsArray
      */
     public ArrayList<Product> showInventory(){
         ArrayList<Product> productsArray = new ArrayList<Product>(); //Products in inventory
@@ -111,7 +117,8 @@ public class StoreManager {
 
     /**
      * Returns and prints the contents of a cart
-     * @param cartID
+     * @param cartID    int value of cart id
+     * @return productsArray
      */
     public ArrayList<Product> showCart(int cartID){
         ShoppingCart shoppingCart = shoppingCartArray.get(cartID);

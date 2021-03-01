@@ -25,7 +25,7 @@ public class Inventory {
     }
 
     /** Gets the quantity of stock of a given product
-     * @param productId
+     * @param productId     int value of the id for the product
      * @return quantity of stock
      */
     public int getStock(int productId){
@@ -38,7 +38,7 @@ public class Inventory {
     }
 
     /** Gets the stock of product given productId
-     * @param productId
+     * @param productId     int value of the id for the product
      * @return product object of given id
      */
     public Product getProduct(int productId){
@@ -53,7 +53,8 @@ public class Inventory {
     /** Adds product to hashmap. The product is stored as the key and
      * quantity is stored as the value. In case of duplicate, it will update
      * quantity of said product.Returns nothing
-     * @param product, quantity
+     * @param product   product object to add
+     * @param quantity  int value for amount to add
      */
     public void addProduct(Product product, int quantity){
         if(productQuant.containsKey(product)){
@@ -64,7 +65,8 @@ public class Inventory {
 
     /** Removes product quantity from HashMap given ProductID and quantity to be removed.
      * If the quantity is 0, it will stay 0. Returns nothing.
-     * @param productId, quantity
+     * @param productId     int value of id for product object
+     * @param quantity      int value of amount to remove
      * */
     public void removeProduct(int productId, int quantity) { //We need to update the docstring
         for(Product key: productQuant.keySet()){

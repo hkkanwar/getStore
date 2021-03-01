@@ -1,5 +1,8 @@
-// Harsimran Kanwar 101143556
-// Hussein Elmokdad 101171490
+/**
+ * @author Harsimran Kanwar 101143556,
+ * @author Hussein Elmokdad 101171490
+ * @version 1.0
+ */
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -10,9 +13,9 @@ public class StoreView {
     private int cartID;
 
     /**
-     *
-     * @param storeManager
-     * @param cartID
+     * Constructor for StoreView
+     * @param storeManager    StoreManager object
+     * @param cartID          int value for the Id of the cart
      */
     public StoreView(StoreManager storeManager, int cartID){
         this.storeManager = storeManager;
@@ -20,15 +23,15 @@ public class StoreView {
     }
 
     /**
-     *
-     * @return
+     * Fetches id of the cart
+     * @return cartID   int value of id of cart
      */
     public int getCartID() {
         return cartID;
     }
 
     /**
-     *
+     * Method to display the user interface
      */
     public void displayGUI(){
         System.out.println("Enter a command");
