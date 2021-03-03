@@ -33,7 +33,7 @@ public class StoreView {
     /**
      * Method to display the user interface
      */
-    public void displayGUI(){
+    public boolean displayGUI(){ //Should we return or go back to using void? Remember to update the doc
         System.out.println("Enter a command");
         System.out.println("Type \"Help\" for a list of commands");
         System.out.println("Type Quit when you are done");
@@ -94,7 +94,8 @@ public class StoreView {
             }
             else if (cmdPicked.equals("checkout")){
                 storeManager.processTransaction(storeManager.getCart(cartID));
-                break;
+                return true; //Change this
+                //break;
             }
             else System.out.println("Please enter a valid command");
             System.out.println("Enter a command");
@@ -103,13 +104,39 @@ public class StoreView {
             System.out.print(">>> ");
             cmdPicked = cmd.nextLine();
         }
-
+        return true;
     }
 
     public static void main(String[] args) {
         StoreManager sm = new StoreManager();
-        StoreView view0 = new StoreView(sm, sm.assignNewCartID());
-        view0.displayGUI();
+        StoreView sv1 = new StoreView(sm, sm.assignNewCartID());
+        StoreView sv2 = new StoreView(sm, sm.assignNewCartID());
+        StoreView sv3 = new StoreView(sm, sm.assignNewCartID());
+        StoreView[] users = {sv1, sv2, sv3};
+        int activeSV = users.length;
+        Scanner sc = new Scanner(System.in);
+        while (activeSV > 0) {
+            System.out.print("CHOOSE YOUR STOREVIEW >>> ");
+            int choice = sc.nextInt();
+            if (choice < users.length && choice >= 0) {
+                if (users[choice] != null) {
+                    String chooseAnother = "";
+                    while (!chooseAnother.equals("y") && !chooseAnother.equals("Y")) {
+                        // this implementation of displayGUI waits for input and displays the page
+                        // corresponding to the user's input. it does this once, and then returns
+                        // true if the user entered 'checkout' or 'quit'.
+                        if (users[choice].displayGUI()) {
+                            users[choice] = null;
+                            activeSV--;
+                            break;
+                        }
+                        System.out.print("GO TO ANOTHER STOREVIEW? (y) >>> ");
+                        chooseAnother = sc.next();
+                    }
+                }
+                else System.out.println("MAIN > ERROR > BAD CHOICE\nTHAT STOREVIEW WAS DEACTIVATED");
+            } else System.out.println(String.format("MAIN > ERROR > BAD CHOICE\nPLEASE CHOOSE IN RANGE [%d, %d]", 0, users.length - 1));
+        }
+        System.out.println("ALL STOREVIEWS DEACTIVATED");
     }
-
 }
