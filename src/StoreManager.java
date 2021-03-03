@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class StoreManager {
-    public static Inventory inventory; //Change back to private
+    private static Inventory inventory;
     private int cartIdCounter;
-    public ArrayList<ShoppingCart> shoppingCartArray; //Change back to private
+    private ArrayList<ShoppingCart> shoppingCartArray;
 
     /**
      *Default constructor for StoreManager

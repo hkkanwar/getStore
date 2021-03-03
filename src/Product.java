@@ -38,7 +38,12 @@ public class Product {
      */
     public double getPrice() { return price; }
 
-    @Override //Remember to document this
+    /**
+     * Compares two Product objects and checks if they're equal
+     * @param o the Object to compare with
+     * @return true if they have the same id, price, and name. false otherwise
+     */
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -46,7 +51,11 @@ public class Product {
         return id == product.id && Double.compare(product.price, price) == 0 && name.equals(product.name);
     }
 
-    @Override //Remember to document this
+    /**
+     * generates a code depending on the product's name, id, and price
+     * @return an int number that represents the hashCode of the product
+     */
+    @Override
     public int hashCode() {
         return Objects.hash(name, id, price);
     }
