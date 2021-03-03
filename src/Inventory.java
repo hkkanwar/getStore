@@ -11,7 +11,7 @@ import java.util.HashMap;
  * */
 public class Inventory {
 
-    public HashMap<Product, Integer> productQuant; //Change back to private
+    private HashMap<Product, Integer> productQuant; 
 
     /** Default constructor for Inventory */
     public Inventory(){
