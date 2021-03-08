@@ -31,9 +31,11 @@ public class StoreView {
     }
 
     /**
-     * Method to display the user interface
+     * Method to display the user interface. Allows the user to interact
+     * with the store
+     * @return true when the user quits or checkouts
      */
-    public boolean displayGUI(){ //Should we return or go back to using void? Remember to update the doc
+    public boolean displayGUI(){
         System.out.println("Enter a command");
         System.out.println("Type \"Help\" for a list of commands");
         System.out.println("Type Quit when you are done");
@@ -93,9 +95,8 @@ public class StoreView {
                 System.out.println("---------------------------------------------------");
             }
             else if (cmdPicked.equals("checkout")){
-                storeManager.processTransaction(storeManager.getCart(cartID));
-                return true; //Change this
-                //break;
+                storeManager.processTransaction(storeManager.getCart(cartID), cartID);
+                return true;
             }
             else System.out.println("Please enter a valid command");
             System.out.println("Enter a command");
@@ -104,6 +105,7 @@ public class StoreView {
             System.out.print(">>> ");
             cmdPicked = cmd.nextLine();
         }
+        storeManager.returnItemsToInventory(cartID); //When the user quits
         return true;
     }
 

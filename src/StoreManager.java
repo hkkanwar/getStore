@@ -24,25 +24,26 @@ public class StoreManager {
     /**
      * Gets the number of available stock for a product
      * @param product   Product object to check for
-     * @return number of stock
+     * @return int number of stock
      */
     public int checkStock(Product product){ return inventory.getStock(product.getId()); }
 
     /**
-     * Processes the transaction by removing a specific quantity of items
-     * from the inventory. Returns -1 if the quantity of an item is more
-     * than the available stock
-     * @param shoppingList  ArrayList of  items to process
-     * @return sum      int value of the total number of processed items.
+     * Process the transaction by printing out a summary of the
+     * user's cart
+     * @param shoppingList the HashMap of the items to process
+     * @param cartID the int ID of the shopping cart
+     * @return the double price of all the quantities of items
      */
-    public int processTransaction(HashMap<Product,Integer> shoppingList) {
-        int sum = 0; //We need to remember to edit the docstring
+    public double processTransaction(HashMap<Product,Integer> shoppingList, int cartID) {
+        double total = 0;
         System.out.println("Purchased items: ");
-        for (Product item : shoppingList.keySet()) {
-            sum += shoppingList.get(item);
+        for (Product item : shoppingList.keySet()){
+            total += item.getPrice() * shoppingList.get(item);
             System.out.println(item.getName() + " - " + shoppingList.get(item));
         }
-        return sum;
+        System.out.println("Total: $" + total);
+        return total;
     }
 
     /**
@@ -64,7 +65,7 @@ public class StoreManager {
     }
 
     /**
-     *Removes item from shopping cart and updates inventory accordingly.
+     * Removes item from shopping cart and updates inventory accordingly.
      * Returns nothing
      * @param product   Product object to remove
      * @param quantity  int value of amount needed to remove from cart
@@ -74,19 +75,19 @@ public class StoreManager {
         ShoppingCart shoppingCart = shoppingCartArray.get(cartID);
         HashMap<Product, Integer> cart = shoppingCart.getCart();
         int actualQuantity = 0;
-        if (quantity > cart.get(product)) actualQuantity = cart.get(product); //If the quantity the user inputs is greater than that in the cart, it will remove all the items of that product
+        if (quantity > cart.get(product)) actualQuantity = cart.get(product); //If the quantity the user inputs is greater than that in the cart, it completely remove the item
         else actualQuantity = quantity;
         cart.replace(product, (cart.get(product) - quantity));
-        if (cart.get(product) <= 0) cart.remove(product); //Should we remove it or set it to 0? set to 0?
+        if (cart.get(product) <= 0) cart.remove(product);
         inventory.addProduct(product, actualQuantity);
     }
 
     /**
-     *Returns all items in cart
-     * @return cartIdCounter
+     * Returns a cart given its cartID
+     * @return the int cart id
      */
     public HashMap<Product, Integer> getCart(int cartID){
-        return shoppingCartArray.get(cartID).getCart(); //couldn't we just do super?
+        return shoppingCartArray.get(cartID).getCart();
     }
 
     /**
@@ -101,8 +102,8 @@ public class StoreManager {
     }
 
     /**
-     * Returns a list of all the items in inventory
-     * @return productsArray
+     * Prints and returns a list of all the items in inventory
+     * @return the ArrayList<Product> productsArray
      */
     public ArrayList<Product> showInventory(){
         ArrayList<Product> productsArray = new ArrayList<Product>(); //Products in inventory
@@ -118,7 +119,7 @@ public class StoreManager {
     /**
      * Returns and prints the contents of a cart
      * @param cartID    int value of cart id
-     * @return productsArray
+     * @return ArrayList<Product> productsArray
      */
     public ArrayList<Product> showCart(int cartID){
         ShoppingCart shoppingCart = shoppingCartArray.get(cartID);
@@ -131,6 +132,16 @@ public class StoreManager {
             System.out.println("(" + productsArray.indexOf(item) + ") " + item.getName() + ", quantity: " + cart.get(item));
         }
         return productsArray;
+    }
+
+    /**
+     * Returns the items in the shopping cart back to the inventory
+     * @param cartID the int representing the cart ID
+     */
+    public void returnItemsToInventory(int cartID){
+        for (Product product : getCart(cartID).keySet()){
+            inventory.addProduct(product, getCart(cartID).get(product));
+        }
     }
 
 }
