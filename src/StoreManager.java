@@ -111,7 +111,7 @@ public class StoreManager {
             productsArray.add(item);
         }
         for(Product item: productsArray){
-            System.out.println("(" + productsArray.indexOf(item) + ") " + item.getName() + " Stock: " +checkStock(item));
+            System.out.println("(" + productsArray.indexOf(item) + ") " + item.getName() + " Stock: " +checkStock(item)  + ", price: $" + item.getPrice());
         }
         return productsArray;
     }

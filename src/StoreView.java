@@ -62,7 +62,7 @@ public class StoreView {
             else if (cmdPicked.equals("addtocart")){
                 System.out.println("|--------------- The getSTore store ---------------|");
                 System.out.println("\\--------------------- add -----------------------/");
-                System.out.println("Pick an item to add:");
+                System.out.println("Pick an item to add (number to the left of the product):");
                 ArrayList<Product> products = storeManager.showInventory();
                 System.out.print(">>> ");
                 Scanner option = new Scanner(System.in);
@@ -76,7 +76,7 @@ public class StoreView {
             else if (cmdPicked.equals("removefromcart")){
                 System.out.println("|--------------- The getSTore store ---------------|");
                 System.out.println("\\----------------- removefromcart ----------------/");
-                System.out.println("Pick an item to remove:");
+                System.out.println("Pick an item to remove (number to the left of the product):");
                 ArrayList<Product> products = storeManager.showCart(cartID);
                 System.out.print(">>> ");
                 Scanner option = new Scanner(System.in);

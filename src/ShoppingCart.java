@@ -15,7 +15,7 @@ public class ShoppingCart {
 
     /**
      * Fetches all items in cart
-     * @return cart
+     * @return HashMap<Product, Integer> cart
      */
     public HashMap<Product, Integer> getCart() {
         return cart;
