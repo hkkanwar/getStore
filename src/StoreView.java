@@ -5,6 +5,7 @@
  */
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class StoreView {
@@ -65,13 +66,25 @@ public class StoreView {
                 System.out.println("Pick an item to add (number to the left of the product):");
                 ArrayList<Product> products = storeManager.showInventory();
                 System.out.print(">>> ");
-                Scanner option = new Scanner(System.in);
-                int pickedOption = option.nextInt();
-                System.out.print("Enter quantity: ");
-                Scanner quantity = new Scanner(System.in);
-                int quantityNum = quantity.nextInt();
-                storeManager.addItemToCart(products.get(pickedOption), quantityNum, cartID);
-                System.out.println("---------------------------------------------------");
+                try{
+                    Scanner option = new Scanner(System.in);
+                    int pickedOption = option.nextInt();
+                    System.out.print("Enter quantity: ");
+                    Scanner quantity = new Scanner(System.in);
+                    int quantityNum = quantity.nextInt();
+                    storeManager.addItemToCart(products.get(pickedOption), quantityNum, cartID);
+                    System.out.println("---------------------------------------------------");
+                }
+                catch(IndexOutOfBoundsException e){
+                    System.out.println("Item was not added to cart (Invalid option entered)");
+                }
+                catch(InputMismatchException e){
+                    // When the user enter a non integer
+                    System.out.println("Failed to process request (Must enter an integer)");
+                }
+                finally {
+                    System.out.println("Please try again");
+                }
             }
             else if (cmdPicked.equals("removefromcart")){
                 System.out.println("|--------------- The getSTore store ---------------|");
@@ -79,12 +92,24 @@ public class StoreView {
                 System.out.println("Pick an item to remove (number to the left of the product):");
                 ArrayList<Product> products = storeManager.showCart(cartID);
                 System.out.print(">>> ");
-                Scanner option = new Scanner(System.in);
-                int pickedOption = option.nextInt();
-                System.out.print("Enter quantity: ");
-                Scanner quantity = new Scanner(System.in);
-                int quantityNum = quantity.nextInt();
-                storeManager.removeItemFromCart(products.get(pickedOption), quantityNum, cartID);
+                try{
+                    Scanner option = new Scanner(System.in);
+                    int pickedOption = option.nextInt();
+                    System.out.print("Enter quantity: ");
+                    Scanner quantity = new Scanner(System.in);
+                    int quantityNum = quantity.nextInt();
+                    storeManager.removeItemFromCart(products.get(pickedOption), quantityNum, cartID);
+                }
+                catch(IndexOutOfBoundsException e){
+                    System.out.println("Item was not removed from cart (Invalid option entered)");
+                }
+                catch(InputMismatchException e){
+                    // When the user enter a non integer
+                    System.out.println("Failed to process request. Please enter a valid integer");
+                }
+                finally {
+                    System.out.println("Please try again");
+                }
                 System.out.println("---------------------------------------------------");
 
             }
