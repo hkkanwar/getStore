@@ -144,7 +144,20 @@ public class StoreView {
         Scanner sc = new Scanner(System.in);
         while (activeSV > 0) {
             System.out.print("CHOOSE YOUR STOREVIEW >>> ");
-            int choice = sc.nextInt();
+            //int choice = sc.nextInt();
+            int choice;
+            while(true) {
+                try {
+                    choice = sc.nextInt();
+                    break;
+                }
+                catch(InputMismatchException ex ) {
+                    System.out.print("Input was not a valid StoreView, please enter a valid StoreView integer >>>");
+                    sc.next();
+                    continue;
+                }
+            }
+
             if (choice < users.length && choice >= 0) {
                 if (users[choice] != null) {
                     String chooseAnother = "";
