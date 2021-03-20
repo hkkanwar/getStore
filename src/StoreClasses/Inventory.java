@@ -10,7 +10,7 @@ import java.util.HashMap;
 /**
  * Inventory Class
  * */
-public class Inventory {
+public class    Inventory {
 
     private HashMap<Product, Integer> productQuant; 
 
