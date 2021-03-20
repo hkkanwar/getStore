@@ -19,7 +19,11 @@ public class StoreManagerTest {
     private static Product p1;
     private static Product p2;
     private static Product p3;
-
+    private static HashMap<Product, Integer> cart1;
+    private static HashMap<Product, Integer> cart2;
+    /**
+     *
+     */
     @BeforeEach
     public void init() {
         // test fixture; executed before each test
@@ -28,10 +32,15 @@ public class StoreManagerTest {
         p1 = new Product("Apple",01,0.5);
         p2 = new Product("Lemon",03,0.8);
         p3 = new Product("Kiwi",04,1.5);
-
-
+        cart1 = new HashMap<Product, Integer>();
+        cart2 = new HashMap<Product, Integer>();
+        cart1.put(p1, 10);
+        cart1.put(p3, 10);
     }
 
+    /**
+     *
+     */
     @Test
     public void testCheckStock() {
         assertEquals(10,s1.checkStock(p1),"bug in checkStock method, returning wrong value");
@@ -40,9 +49,13 @@ public class StoreManagerTest {
         assertEquals(0,s1.checkStock(p3),"bug in checkStock method, returning wrong value");
     }
 
+    /**
+     * 
+     */
     @Test
     public void testProcessTransaction() {
-
+        assertEquals(20.0,s1.processTransaction(cart1, 0),"bug in ProcessTransaction method, incorrect returned sum");
+        assertEquals(0.0,s1.processTransaction(cart2, 0),"bug in ProcessTransaction method, incorrect returned sum");
     }
 
     @Test
