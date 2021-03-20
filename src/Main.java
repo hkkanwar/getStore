@@ -84,5 +84,13 @@ public class Main {
         sm.inventory.addProduct(apple, 2);
         sm.inventory.addProduct(apple1, 3);
          */
+
+
+        Inventory i1 = new Inventory();
+        Product p1 = new Product("Apple",01,0.5);
+
+        System.out.println(i1.getProduct(04).equals(null));
+
+
     }
 }
