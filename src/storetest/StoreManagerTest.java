@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import StoreClasses.StoreManager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,7 +36,7 @@ public class StoreManagerTest {
         cart1 = new HashMap<Product, Integer>();
         cart2 = new HashMap<Product, Integer>();
         cart1.put(p1, 10);
-        cart1.put(p3, 10);
+        cart1.put(p2, 10);
     }
 
     /**
@@ -50,37 +51,67 @@ public class StoreManagerTest {
     }
 
     /**
-     * 
+     *
      */
     @Test
     public void testProcessTransaction() {
-        assertEquals(20.0,s1.processTransaction(cart1, 0),"bug in ProcessTransaction method, incorrect returned sum");
+        assertEquals(13.0,s1.processTransaction(cart1, 0),"bug in ProcessTransaction method, incorrect returned sum");
         assertEquals(0.0,s1.processTransaction(cart2, 0),"bug in ProcessTransaction method, incorrect returned sum");
     }
 
     @Test
     public void testAddItemToCart() {
-
+        s1.assignNewCartID();
+        s1.assignNewCartID();
+        s1.addItemToCart(p1, 3, 0);
+        s1.addItemToCart(p2, 2, 0);
+        assertTrue(s1.getCart(0).containsKey(p1), "cart is missing an item");
+        assertTrue(s1.getCart(0).containsKey(p2), "cart is missing an item");
+        assertFalse(s1.getCart(0).containsKey(p3), "cart contains an extra item");
+        assertFalse(s1.getCart(1).containsKey(p1), "cart should be empty");
+        assertFalse(s1.getCart(1).containsKey(p2), "cart should be empty");
+        assertFalse(s1.getCart(1).containsKey(p3), "cart should be empty");
+        assertEquals(3, s1.getCart(0).get(p1), "quantity of an item is wrong");
+        assertEquals(2, s1.getCart(0).get(p2), "quantity of an item is wrong");
     }
 
     @Test
     public void testRemoveItemFromCart() {
-
+        s1.assignNewCartID();
+        s1.addItemToCart(p1, 3, 0);
+        s1.addItemToCart(p2, 2, 0);
+        s1.removeItemFromCart(p2, 1, 0);
+        assertTrue(s1.getCart(0).containsKey(p2), "cart is missing an item");
+        assertEquals(1, s1.getCart(0).get(p2), "quantity of an item is wrong");
+        s1.removeItemFromCart(p2, 1, 0);
+        assertFalse(s1.getCart(0).containsKey(p2), "cart should not have the item");
+        s1.removeItemFromCart(p1, 3, 0);
+        assertFalse(s1.getCart(0).containsKey(p1), "cart should not have the item");
     }
 
     @Test
     public void testGetCart() {
-
+        s1.assignNewCartID();
+        s1.assignNewCartID();
+        s1.addItemToCart(p1, 10, 0);
+        s1.addItemToCart(p2, 5, 0);
+        assertTrue(s1.getCart(0).containsKey(p1), "cart is missing an item");
+        assertTrue(s1.getCart(0).containsKey(p2), "cart is missing an item");
+        assertFalse(s1.getCart(0).containsKey(p3), "cart contains an extra item");
+        assertEquals(10, s1.getCart(0).get(p1), "quantity of an item is wrong");
+        assertEquals(5, s1.getCart(0).get(p2), "quantity of an item is wrong");
     }
 
     @Test
     public void testAssignNewCartID() {
-
+        assertEquals(0, s1.assignNewCartID(), "Wrong ID");
+        assertEquals(1, s1.assignNewCartID(), "Wrong ID");
+        assertEquals(2, s1.assignNewCartID(), "Wrong ID");
     }
 
     @Test
     public void testShowInventory() {
-
+        s1.showInventory();
     }
 
     @Test
