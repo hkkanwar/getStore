@@ -61,6 +61,7 @@ public class StoreView {
                 System.out.println("---------------------------------------------------");
             }
             else if (cmdPicked.equals("addtocart")){
+                // Contains nested try catch blocks
                 System.out.println("|--------------- The getSTore store ---------------|");
                 System.out.println("\\--------------------- add -----------------------/");
                 System.out.println("Pick an item to add (number to the left of the product):");
@@ -77,16 +78,49 @@ public class StoreView {
                 }
                 catch(IndexOutOfBoundsException e){
                     System.out.println("Item was not added to cart (Invalid option entered)");
+                    System.out.println("Please try again");
+                    try{
+                        System.out.print(">>> ");
+                        Scanner option = new Scanner(System.in);
+                        int pickedOption = option.nextInt();
+                        System.out.print("Enter quantity: ");
+                        Scanner quantity = new Scanner(System.in);
+                        int quantityNum = quantity.nextInt();
+                        storeManager.addItemToCart(products.get(pickedOption), quantityNum, cartID);
+                        System.out.println("---------------------------------------------------");
+                    }
+                    catch(IndexOutOfBoundsException e2){
+                        System.out.println("Failed to process request (Invalid option entered)");
+                    }
+                    catch(InputMismatchException e2){
+                        // When the user enter a non integer
+                        System.out.println("Failed to process request (Must enter an integer)");
+                    }
                 }
                 catch(InputMismatchException e){
-                    // When the user enter a non integer
-                    System.out.println("Failed to process request (Must enter an integer)");
-                }
-                finally {
+                    System.out.println("Item was not added to cart (Must enter an integer)");
                     System.out.println("Please try again");
+                    try{
+                        System.out.print(">>> ");
+                        Scanner option = new Scanner(System.in);
+                        int pickedOption = option.nextInt();
+                        System.out.print("Enter quantity: ");
+                        Scanner quantity = new Scanner(System.in);
+                        int quantityNum = quantity.nextInt();
+                        storeManager.addItemToCart(products.get(pickedOption), quantityNum, cartID);
+                        System.out.println("---------------------------------------------------");
+                    }
+                    catch(IndexOutOfBoundsException e2){
+                        System.out.println("Failed to process request (Invalid option entered)");
+                    }
+                    catch(InputMismatchException e2){
+                        // When the user enter a non integer
+                        System.out.println("Failed to process request (Must enter an integer)");
+                    }
                 }
             }
             else if (cmdPicked.equals("removefromcart")){
+                // Contains nested try catch blocks
                 System.out.println("|--------------- The getSTore store ---------------|");
                 System.out.println("\\----------------- removefromcart ----------------/");
                 System.out.println("Pick an item to remove (number to the left of the product):");
@@ -102,13 +136,41 @@ public class StoreView {
                 }
                 catch(IndexOutOfBoundsException e){
                     System.out.println("Item was not removed from cart (Invalid option entered)");
+                    System.out.println("Please try again");
+                    try{
+                        System.out.print(">>> ");
+                        Scanner option = new Scanner(System.in);
+                        int pickedOption = option.nextInt();
+                        System.out.print("Enter quantity: ");
+                        Scanner quantity = new Scanner(System.in);
+                        int quantityNum = quantity.nextInt();
+                        storeManager.removeItemFromCart(products.get(pickedOption), quantityNum, cartID);
+                    }
+                    catch(IndexOutOfBoundsException e2){
+                        System.out.println("Failed to process request (Invalid option entered)");
+                    }
+                    catch(InputMismatchException e2){
+                        System.out.println("Failed to process request (Must enter an integer)");
+                    }
                 }
                 catch(InputMismatchException e){
-                    // When the user enter a non integer
-                    System.out.println("Failed to process request. Please enter a valid integer");
-                }
-                finally {
+                    System.out.println("Item was not removed from cart (Must enter an integer)");
                     System.out.println("Please try again");
+                    try{
+                        System.out.print(">>> ");
+                        Scanner option = new Scanner(System.in);
+                        int pickedOption = option.nextInt();
+                        System.out.print("Enter quantity: ");
+                        Scanner quantity = new Scanner(System.in);
+                        int quantityNum = quantity.nextInt();
+                        storeManager.removeItemFromCart(products.get(pickedOption), quantityNum, cartID);
+                    }
+                    catch(IndexOutOfBoundsException e2){
+                        System.out.println("Failed to process request (Invalid option entered)");
+                    }
+                    catch(InputMismatchException e2){
+                        System.out.println("Failed to process request (Must enter an integer)");
+                    }
                 }
                 System.out.println("---------------------------------------------------");
 

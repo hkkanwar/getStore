@@ -1,5 +1,9 @@
 package storetest;
-
+/**
+ * @author Harsimran Kanwar 101143556,
+ * @author Hussein Elmokdad 101171490
+ * @version 1.0
+ */
 import StoreClasses.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
