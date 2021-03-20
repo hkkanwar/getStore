@@ -1,4 +1,5 @@
-package StoreClasses; /**
+package StoreClasses;
+ /**
  * @author Harsimran Kanwar 101143556,
  * @author Hussein Elmokdad 101171490
  * @version 1.0
