@@ -21,6 +21,9 @@ public class InventoryTest {
     private static Product p4;
     private static Product p5;
 
+    /**
+     * Initializes the variables used throughout the test suite
+     */
     @BeforeEach
     public void init() {
         // test fixture; executed before each test
@@ -34,6 +37,9 @@ public class InventoryTest {
 
     }
 
+    /**
+     * Tests the getStock method for the quantity of products
+     */
     @Test
     public void testGetStock() {
         //productId exists
@@ -44,16 +50,28 @@ public class InventoryTest {
         assertEquals(0,i1.getStock(-45),"bug in getStock method, returning wrong value");
     }
 
+    /**
+     * Tests the getProduct method for the available product information
+     */
    @Test
     public void testGetProduct() {
         //product exists
        assertEquals("Apple", i1.getProduct(01).getName(), "bug in getProduct method, returning wrong value");
+       assertEquals(0.5, i1.getProduct(01).getPrice(), "bug in getProduct method, returning wrong value");
+       assertEquals(01, i1.getProduct(01).getId(), "bug in getProduct method, returning wrong value");
+
        assertEquals("Orange", i1.getProduct(02).getName(), "bug in getProduct method, returning wrong value");
+       assertEquals(1.2, i1.getProduct(02).getPrice(), "bug in getProduct method, returning wrong value");
+       assertEquals(02, i1.getProduct(02).getId(), "bug in getProduct method, returning wrong value");
+
        //product doesn't exist, method will return null (corner case)
        assertNull(i1.getProduct(04));
        assertNull(i1.getProduct(-1));
    }
 
+    /**
+     * Tests the addProduct method to add product to our inventory
+     */
     @Test
     public void testAddProduct() {
         i1.addProduct(p1,4);
@@ -69,7 +87,9 @@ public class InventoryTest {
         assertTrue(i1.getProductQuant().containsKey(p4));
     }
 
-
+    /**
+     * Tests the removeProduct method to remove product quantities from our inventory
+     */
     @Test
     public void testRemoveProduct() {
         i1.removeProduct(p1.getId(),4);

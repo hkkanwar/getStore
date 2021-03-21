@@ -5,9 +5,6 @@ package storetest;
  * @version 1.0
  */
 
-
-
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +14,7 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.*;
 import StoreClass.StoreManager;
 import StoreClass.Product;
+
 
 public class StoreManagerTest {
     private static StoreManager s1;
