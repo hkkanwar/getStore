@@ -18,6 +18,7 @@ public class InventoryTest {
     private static Product p1;
     private static Product p2;
     private static Product p3;
+    private static Product p4;
 
     @BeforeEach
     public void init() {
@@ -25,8 +26,9 @@ public class InventoryTest {
         // creation of required objects, program state, etc.
         i1 = new Inventory();
         p1 = new Product("Apple",01,0.5);
-        //p2 = new Product("Lemon",03,0.8);
-        //p3 = new Product("Kiwi",04,1.5);
+        p2 = new Product("Lemon",03,0.8);
+        p3 = new Product("Kiwi",04,1.5);
+        p4 = new Product("Mango",05,1.2);
 
     }
 
@@ -52,13 +54,18 @@ public class InventoryTest {
 
     @Test
     public void testaddProduct() {
-        /*
-        assertEquals(10,s1.checkStock(p1),"bug in checkStock method, returning wrong value");
-        assertEquals(5,s1.checkStock(p2),"bug in checkStock method, returning wrong value");
-        //this product does not exist in inventory, should return 0 (corner case)
-        assertEquals(0,s1.checkStock(p3),"bug in checkStock method, returning wrong value");
+        i1.addProduct(p1,4);
+        i1.addProduct(p2,7);
+        //check that product quantity gets updated since product already exist (corner case)
+        assertEquals(14,i1.getStock(p1.getId()),"bug in getStock method, returning wrong value");
+        assertEquals(12,i1.getStock(p2.getId()),"bug in getStock method, returning wrong value");
 
-         */
+
+        i1.addProduct(p3,10);
+        i1.addProduct(p4, 25);
+        //check product got added and exists in inventory
+        assertTrue(i1.getProductQuant().containsKey(p3));
+        assertTrue(i1.getProductQuant().containsKey(p4));
     }
 
      /*
