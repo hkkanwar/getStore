@@ -1,4 +1,4 @@
-package StoreClasses;
+package StoreClass;
 /**
  * @author Harsimran Kanwar 101143556,
  * @author Hussein Elmokdad 101171490
@@ -10,9 +10,9 @@ import java.util.HashMap;
 /**
  * Inventory Class
  * */
-public class    Inventory {
+public class Inventory {
 
-    private HashMap<Product, Integer> productQuant; 
+    private HashMap<Product, Integer> productQuant;
 
     /** Default constructor for Inventory */
     public Inventory(){
@@ -69,7 +69,7 @@ public class    Inventory {
      * @param productId     int value of id for product object
      * @param quantity      int value of amount to remove
      * */
-    public void removeProduct(int productId, int quantity) { //We need to update the docstring
+    public void removeProduct(int productId, int quantity) {
         for(Product key: productQuant.keySet()){
             if(key.getId() == productId){
                 productQuant.replace(key, (productQuant.get(key) - quantity));

@@ -86,11 +86,11 @@ public class Main {
          */
 
 
-        Inventory i1 = new Inventory();
-        Product p1 = new Product("Apple",01,0.5);
-        StoreManager manager = new StoreManager();
+       // Inventory i1 = new Inventory();
+        //Product p1 = new Product("Apple",01,0.5);
+       // StoreManager manager = new StoreManager();
 
-        System.out.println(i1.getProduct(04).equals(null));
+        //System.out.println(i1.getProduct(04).equals(null));
 
 
     }

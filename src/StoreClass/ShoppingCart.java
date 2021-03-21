@@ -1,8 +1,9 @@
-package StoreClasses; /**
+package StoreClass; /**
  * @author Harsimran Kanwar 101143556,
  * @author Hussein Elmokdad 101171490
  * @version 1.0
  */
+
 import java.util.HashMap;
 
 public class ShoppingCart {

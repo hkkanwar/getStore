@@ -4,14 +4,19 @@ package storetest;
  * @author Hussein Elmokdad 101171490
  * @version 1.0
  */
-import StoreClasses.Product;
+
+
+
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import StoreClasses.StoreManager;
+
 
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
+import StoreClass.StoreManager;
+import StoreClass.Product;
 
 public class StoreManagerTest {
     private static StoreManager s1;

@@ -1,3 +1,4 @@
+package StoreClass;
 /**
  * @author Harsimran Kanwar 101143556,
  * @author Hussein Elmokdad 101171490

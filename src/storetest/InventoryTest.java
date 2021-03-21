@@ -8,8 +8,8 @@ package storetest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import StoreClasses.Inventory;
-import StoreClasses.Product;
+import StoreClass.Inventory;
+import StoreClass.Product;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,6 +19,7 @@ public class InventoryTest {
     private static Product p2;
     private static Product p3;
     private static Product p4;
+    private static Product p5;
 
     @BeforeEach
     public void init() {
@@ -29,11 +30,12 @@ public class InventoryTest {
         p2 = new Product("Lemon",03,0.8);
         p3 = new Product("Kiwi",04,1.5);
         p4 = new Product("Mango",05,1.2);
+        p5 = new Product("Pineapple",07,1.2);
 
     }
 
     @Test
-    public void testgetStock() {
+    public void testGetStock() {
         //productId exists
         assertEquals(10,i1.getStock(01),"bug in getStock method, returning wrong value");
         assertEquals(5,i1.getStock(02),"bug in getStock method, returning wrong value");
@@ -53,13 +55,12 @@ public class InventoryTest {
    }
 
     @Test
-    public void testaddProduct() {
+    public void testAddProduct() {
         i1.addProduct(p1,4);
         i1.addProduct(p2,7);
         //check that product quantity gets updated since product already exist (corner case)
-        assertEquals(14,i1.getStock(p1.getId()),"bug in getStock method, returning wrong value");
-        assertEquals(12,i1.getStock(p2.getId()),"bug in getStock method, returning wrong value");
-
+        assertEquals(14,i1.getStock(p1.getId()),"bug in testAddProduct method, returning wrong value");
+        assertEquals(12,i1.getStock(p2.getId()),"bug in testAddProduct method, returning wrong value");
 
         i1.addProduct(p3,10);
         i1.addProduct(p4, 25);
@@ -68,14 +69,32 @@ public class InventoryTest {
         assertTrue(i1.getProductQuant().containsKey(p4));
     }
 
-     /*
+
     @Test
-    public void testaddProduct() {
-        assertEquals(10,s1.checkStock(p1),"bug in checkStock method, returning wrong value");
-        assertEquals(5,s1.checkStock(p2),"bug in checkStock method, returning wrong value");
-        //this product does not exist in inventory, should return 0 (corner case)
-        assertEquals(0,s1.checkStock(p3),"bug in checkStock method, returning wrong value");
+    public void testRemoveProduct() {
+        i1.removeProduct(p1.getId(),4);
+        i1.removeProduct(p2.getId(),1);
+        //remove product quantity given product id
+        assertEquals(6,i1.getStock(p1.getId()),"bug in testRemoveProduct method, returning wrong value");
+        assertEquals(4,i1.getStock(p2.getId()),"bug in testRemoveProduct method, returning wrong value");
+
+        //empty inventory for the product completely
+        i1.removeProduct(p3.getId(),10);
+        i1.removeProduct(p4.getId(),25);
+        assertEquals(0,i1.getStock(p3.getId()),"bug in testRemoveProduct method, returning wrong value");
+        assertEquals(0,i1.getStock(p4.getId()),"bug in testRemoveProduct method, returning wrong value");
+
+        i1.removeProduct(p4.getId(), 5);
+        //check that product quantity is still 0 (corner case)
+        assertEquals(0,i1.getStock(p4.getId()),"bug in testRemoveProduct method, returning wrong value");
+
+        //check what happens with invalid productId (corner case)
+        i1.removeProduct(p5.getId(), 10);
+        //ensure that this product never existed in inventory
+        assertFalse(i1.getProductQuant().containsKey(p5));
+
+
     }
-*/
+
 
 }
