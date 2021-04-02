@@ -51,15 +51,22 @@ public class StoreViewG {
         ImageIcon appleImage = new ImageIcon(new ImageIcon("src/StoreClass/Apples.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
         JLabel appleImageLabel = new JLabel(appleImage);
         JLabel text0 = new JLabel("Some Text");
+        JButton button = new JButton("Testing");
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        bodyPanel.add(appleImageLabel,constraints);
+        text0.setBackground(Color.BLUE);
+        text0.setOpaque(true);
         constraints.gridx = 1;
         constraints.gridy = 0;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.fill = GridBagConstraints.VERTICAL;
+        bodyPanel.add(appleImageLabel,constraints);
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
         bodyPanel.add(text0,constraints);
-
-
+        bodyPanel.add(button, constraints);
+        bodyPanel.setBackground(Color.CYAN);
+        bodyPanel.setOpaque(true);
         // -------------------------------------------------
 
         // adding JLabels to the respective JPanel
@@ -67,7 +74,7 @@ public class StoreViewG {
 
         // set the preferred sizes and colours here
         headerPanel.setPreferredSize(new Dimension(250, 100));
-        bodyPanel.setPreferredSize(new Dimension(250, 100));
+        //bodyPanel.setPreferredSize(new Dimension(250, 100));
 
         JButton palButton = new JButton("TEST");
         palButton.addActionListener(new ActionListener() {
@@ -82,7 +89,7 @@ public class StoreViewG {
         // add your JLabels to the panel here
         mainPanel.add(headerPanel, BorderLayout.PAGE_START);
         mainPanel.add(bodyPanel, BorderLayout.CENTER);
-        mainPanel.setPreferredSize(new Dimension(500, 500));
+        //mainPanel.setPreferredSize(new Dimension(500, 500));
         // pack
         frame.add(mainPanel);
         frame.pack();
