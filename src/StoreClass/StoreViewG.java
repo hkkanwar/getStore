@@ -50,21 +50,38 @@ public class StoreViewG {
         // -------------------------------------------------
         ImageIcon appleImage = new ImageIcon(new ImageIcon("src/StoreClass/Apples.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
         JLabel appleImageLabel = new JLabel(appleImage);
-        JLabel text0 = new JLabel("Some Text");
+        JLabel cartText = new JLabel("Cart");
+        cartText.setMinimumSize(new Dimension(30, 30));
+        JLabel inventoryText = new JLabel("Inventory");
         JButton button = new JButton("Testing");
+        JButton button1 = new JButton("Testing1");
+        JButton button2 = new JButton("Testing2");
+        JButton button3 = new JButton("Testing3");
         GridBagConstraints constraints = new GridBagConstraints();
-        text0.setBackground(Color.BLUE);
-        text0.setOpaque(true);
-        constraints.gridx = 1;
-        constraints.gridy = 0;
-        constraints.fill = GridBagConstraints.HORIZONTAL;
-        constraints.fill = GridBagConstraints.VERTICAL;
-        bodyPanel.add(appleImageLabel,constraints);
         constraints.gridx = 0;
         constraints.gridy = 0;
-        constraints.fill = GridBagConstraints.HORIZONTAL;
-        bodyPanel.add(text0,constraints);
+        constraints.insets = new Insets(0,20,15,20);
+        bodyPanel.add(cartText,constraints);
+        constraints.gridx = 1;
+        constraints.gridy = 0;
+        bodyPanel.add(inventoryText,constraints);
+        constraints.gridx = 1;
+        constraints.gridy = 1;
+        bodyPanel.add(appleImageLabel,constraints);
+        constraints.gridx = 2;
+        constraints.gridy = 1;
         bodyPanel.add(button, constraints);
+        constraints.gridx = 3;
+        constraints.gridy = 1;
+        bodyPanel.add(button1, constraints);
+        constraints.gridx = 1;
+        constraints.gridy = 2;
+        bodyPanel.add(button2, constraints);
+        constraints.gridx = 1;
+        constraints.gridy = 3;
+        constraints.weighty = 1.0;
+        constraints.insets = new Insets(40,0,0,0);
+        bodyPanel.add(button3, constraints);
         bodyPanel.setBackground(Color.CYAN);
         bodyPanel.setOpaque(true);
         // -------------------------------------------------
@@ -73,8 +90,8 @@ public class StoreViewG {
         headerPanel.add(headerLabel);
 
         // set the preferred sizes and colours here
-        headerPanel.setPreferredSize(new Dimension(250, 100));
-        //bodyPanel.setPreferredSize(new Dimension(250, 100));
+        // headerPanel.setPreferredSize(new Dimension(250, 100));
+        // bodyPanel.setPreferredSize(new Dimension(250, 100));
 
         JButton palButton = new JButton("TEST");
         palButton.addActionListener(new ActionListener() {
@@ -109,6 +126,8 @@ public class StoreViewG {
         });
         // the frame is not visible until we set it to be so
         frame.setVisible(true);
+        //frame.setMinimumSize(new Dimension(300, 300));
+        System.out.println(frame.getSize()); //Default w182 & h155
     }
 
 
