@@ -58,15 +58,39 @@ public class StoreViewG {
 
         //create Jpanels
         JPanel mainPanel = new JPanel(new BorderLayout());
-        JPanel headerPanel = new JPanel();
+        JPanel headerPanel = new JPanel(new BorderLayout());
         JPanel bodyPanel = new JPanel(new GridBagLayout());
-
-        // -------------------------------------------------
-        JScrollBar scrollBar = new JScrollBar();
+        JPanel cartP = new JPanel(new GridLayout(1,1));
+        //icons
         ImageIcon appleImage = new ImageIcon(new ImageIcon("src/StoreClass/Apples.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+        ImageIcon cartImage = new ImageIcon(new ImageIcon("src/StoreClass/cart1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
+        //_____________________________________________
         JLabel appleImageLabel = new JLabel(appleImage);
-        JLabel cartText = new JLabel("Cart");
+        JButton cartText = new JButton("Cart");
         cartText.setMinimumSize(new Dimension(30, 30));
+
+        //JPanel cartP = new JPanel();
+        //cartP.setMinimumSize(new Dimension(100,250));
+        cartP.setBackground(Color.pink);
+        cartP.setVisible(true);
+        cartP.setOpaque(true);
+        JButton cartB = new JButton(cartImage);
+        cartText.addActionListener(new ActionListener() {
+
+            // this method will be called when we click the button
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                System.out.println("hii");
+                if(cartP.isVisible()){
+                    cartP.setVisible(false);
+                }
+                else{
+                    cartP.setVisible(true);
+                }
+
+            }});
+
+
         JLabel inventoryText = new JLabel("Inventory");
         JLabel applesText = new JLabel("Apples");
         JButton button = new JButton("Testing");
@@ -79,7 +103,17 @@ public class StoreViewG {
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.insets = new Insets(0,20,15,20);
-        bodyPanel.add(cartText,constraints);
+        bodyPanel.add(cartText);
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        bodyPanel.add(cartB);
+
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        //constraints.gridheight=2;
+        //constraints.gridwidth=1;
+        bodyPanel.add(cartP,constraints);
+
         constraints.gridx = 1;
         constraints.gridy = 0;
         bodyPanel.add(inventoryText,constraints);
@@ -98,6 +132,7 @@ public class StoreViewG {
         constraints.gridx = 1;
         constraints.gridy = 3;
         constraints.weighty = 1.0;
+
         constraints.insets = new Insets(40,0,0,0);
         JPanel card1 = new JPanel(new BorderLayout());
         card1.add(appleImageLabel, BorderLayout.CENTER);
@@ -108,27 +143,21 @@ public class StoreViewG {
         card1.add(gridLayout, BorderLayout.PAGE_END);
         JPanel card2 = productCard("Apples", 12.2, 12, appleImageLabel);
         bodyPanel.add(card2, constraints);
-        bodyPanel.setBackground(Color.CYAN);
+        bodyPanel.add(cartB,constraints);
+        //bodyPanel.setBackground(Color.CYAN);
         bodyPanel.setOpaque(true);
-        //mainPanel.add(scrollBar, BorderLayout.EAST);
+
+
         // -------------------------------------------------
 
         // adding JLabels to the respective JPanel
-        headerPanel.add(headerLabel);
+        headerPanel.add(headerLabel, BorderLayout.CENTER);
+        //headerPanel.add(cartB,BorderLayout.EAST);
 
         // set the preferred sizes and colours here
         // headerPanel.setPreferredSize(new Dimension(250, 100));
         // bodyPanel.setPreferredSize(new Dimension(250, 100));
 
-        JButton palButton = new JButton("TEST");
-        palButton.addActionListener(new ActionListener() {
-
-            // this method will be called when we click the button
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-            System.out.println("hii");
-
-            }});
 
         // add your JLabels to the panel here
         mainPanel.add(headerPanel, BorderLayout.PAGE_START);
