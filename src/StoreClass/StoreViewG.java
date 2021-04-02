@@ -45,7 +45,22 @@ public class StoreViewG {
         //create Jpanels
         JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel headerPanel = new JPanel();
-        JPanel bodyPanel = new JPanel(new GridLayout(1,8));
+        JPanel bodyPanel = new JPanel(new GridBagLayout());
+
+        // -------------------------------------------------
+        ImageIcon appleImage = new ImageIcon(new ImageIcon("src/StoreClass/Apples.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+        JLabel appleImageLabel = new JLabel(appleImage);
+        JLabel text0 = new JLabel("Some Text");
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        bodyPanel.add(appleImageLabel,constraints);
+        constraints.gridx = 1;
+        constraints.gridy = 0;
+        bodyPanel.add(text0,constraints);
+
+
+        // -------------------------------------------------
 
         // adding JLabels to the respective JPanel
         headerPanel.add(headerLabel);
@@ -64,17 +79,13 @@ public class StoreViewG {
 
             }});
 
-
         // add your JLabels to the panel here
         mainPanel.add(headerPanel, BorderLayout.PAGE_START);
         mainPanel.add(bodyPanel, BorderLayout.CENTER);
-
-
-
+        mainPanel.setPreferredSize(new Dimension(500, 500));
         // pack
         frame.add(mainPanel);
         frame.pack();
-
         // add the window listener
         // we no longer want the frame to close immediately when we press "x"
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -89,11 +100,8 @@ public class StoreViewG {
                 }
             }
         });
-
         // the frame is not visible until we set it to be so
         frame.setVisible(true);
-
-
     }
 
 
