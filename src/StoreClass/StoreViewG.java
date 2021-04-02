@@ -35,6 +35,20 @@ public class StoreViewG {
         return cartID;
     }
 
+    private JPanel productCard(String name, double price, int stock, JLabel image){
+        JButton buttonAdd = new JButton("+");
+        JButton buttonSub = new JButton("-");
+        JLabel textLabel = new JLabel(name);
+        JPanel borderLayout = new JPanel(new BorderLayout());
+        borderLayout.add(image, BorderLayout.CENTER);
+        borderLayout.add(textLabel, BorderLayout.PAGE_START);
+        JPanel gridLayout = new JPanel(new GridLayout(1,2));
+        gridLayout.add(buttonAdd);
+        gridLayout.add(buttonSub);
+        borderLayout.add(gridLayout, BorderLayout.PAGE_END);
+        return borderLayout;
+    }
+
     public void displayGUI(){
         // some things you should specify when creating your JFrame
         frame.setTitle("GETSTORE()");
@@ -48,15 +62,19 @@ public class StoreViewG {
         JPanel bodyPanel = new JPanel(new GridBagLayout());
 
         // -------------------------------------------------
+        JScrollBar scrollBar = new JScrollBar();
         ImageIcon appleImage = new ImageIcon(new ImageIcon("src/StoreClass/Apples.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
         JLabel appleImageLabel = new JLabel(appleImage);
         JLabel cartText = new JLabel("Cart");
         cartText.setMinimumSize(new Dimension(30, 30));
         JLabel inventoryText = new JLabel("Inventory");
+        JLabel applesText = new JLabel("Apples");
         JButton button = new JButton("Testing");
         JButton button1 = new JButton("Testing1");
         JButton button2 = new JButton("Testing2");
         JButton button3 = new JButton("Testing3");
+        JButton buttonAdd = new JButton("+");
+        JButton buttonSub = new JButton("-");
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -81,9 +99,18 @@ public class StoreViewG {
         constraints.gridy = 3;
         constraints.weighty = 1.0;
         constraints.insets = new Insets(40,0,0,0);
-        bodyPanel.add(button3, constraints);
+        JPanel card1 = new JPanel(new BorderLayout());
+        card1.add(appleImageLabel, BorderLayout.CENTER);
+        card1.add(applesText, BorderLayout.PAGE_START);
+        JPanel gridLayout = new JPanel(new GridLayout(1,2));
+        gridLayout.add(buttonAdd);
+        gridLayout.add(buttonSub);
+        card1.add(gridLayout, BorderLayout.PAGE_END);
+        JPanel card2 = productCard("Apples", 12.2, 12, appleImageLabel);
+        bodyPanel.add(card2, constraints);
         bodyPanel.setBackground(Color.CYAN);
         bodyPanel.setOpaque(true);
+        //mainPanel.add(scrollBar, BorderLayout.EAST);
         // -------------------------------------------------
 
         // adding JLabels to the respective JPanel
