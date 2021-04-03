@@ -31,7 +31,6 @@ public class StoreVCart {
             return cartID;
         }
 
-        //We should probably pass the object instead of all these parameters
         private JPanel productCard(Product product, int stock){
             JPanel borderLayout = new JPanel(new BorderLayout());
             JPanel gridLayout = new JPanel(new GridLayout(1,2));
@@ -48,9 +47,20 @@ public class StoreVCart {
                 public void actionPerformed(ActionEvent ae) {
                     if(storeManager.checkStock(product) > 0) {
                         storeManager.addItemToCart(product, 1, cartID);
+                        stockLabel.setText("Stock: " + Integer.toString(storeManager.checkStock(product)));
                     }
                     if (storeManager.checkStock(product) == 0) buttonAdd.setEnabled(false);
             }});
+            buttonSub.addActionListener(new ActionListener() {
+                // this method will be called when we click the button
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    if(storeManager.checkStock(product) > 0) {
+                        storeManager.addItemToCart(product, 1, cartID);
+                        stockLabel.setText("Stock: " + Integer.toString(storeManager.checkStock(product)));
+                    }
+                    if (storeManager.checkStock(product) == 0) buttonAdd.setEnabled(false);
+                }});
             description.add(nameLabel, BorderLayout.NORTH);
             description.add(priceLabel, BorderLayout.CENTER);
             description.add(stockLabel, BorderLayout.SOUTH);
@@ -67,7 +77,7 @@ public class StoreVCart {
             frame.setTitle("Client StoreView");
 
             // create JLabels
-            JLabel headerLabel = new JLabel("Welcome to our Store");
+            JLabel headerLabel = new JLabel("Welcome to our Store! (ID:" + cartID + ") ");
 
             //create Jpanels
             JPanel mainPanel = new JPanel(new BorderLayout());
