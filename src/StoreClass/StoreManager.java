@@ -76,7 +76,7 @@ public class StoreManager {
         ShoppingCart shoppingCart = shoppingCartArray.get(cartID);
         HashMap<Product, Integer> cart = shoppingCart.getCart();
         int actualQuantity = 0;
-        if (quantity > cart.get(product)) actualQuantity = cart.get(product); //If the quantity the user inputs is greater than that in the cart, it completely remove the item
+        if (quantity > cart.get(product)) actualQuantity = cart.get(product);
         else actualQuantity = quantity;
         cart.replace(product, (cart.get(product) - quantity));
         if (cart.get(product) <= 0) cart.remove(product);
