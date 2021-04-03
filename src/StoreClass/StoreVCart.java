@@ -110,11 +110,9 @@ public class StoreVCart {
 
         public void displayGUI(){
             frame.setTitle("Client StoreView");
-
-            // create JLabels
             JLabel headerLabel = new JLabel("Welcome to our Store! (ID:" + cartID + ")");
+            cartItemsGrid.setVisible(false);
 
-            //create Jpanels
             JPanel mainPanel = new JPanel(new BorderLayout());
             JPanel headerPanel = new JPanel(new BorderLayout());
             JPanel footerPanel = new JPanel(new BorderLayout());
@@ -122,15 +120,27 @@ public class StoreVCart {
             JPanel inventoryP = new JPanel(new BorderLayout());
             JPanel cartP = new JPanel(new BorderLayout());
             JPanel buffer = new JPanel(new GridLayout(2,1));
+            JPanel adsBorderLayout = new JPanel(new BorderLayout());
+            JPanel productCardsGrid = new JPanel(new GridLayout(3,3));
 
 
             ImageIcon cartImage = new ImageIcon(new ImageIcon("src/StoreClass/cart1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
             ImageIcon adIm = new ImageIcon(new ImageIcon("src/StoreClass/ad1.jpeg").getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT));
             ImageIcon adIm2 = new ImageIcon(new ImageIcon("src/StoreClass/ad2.jpeg").getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT));
+
             JLabel adImage = new JLabel(adIm);
             JLabel adImage2 = new JLabel(adIm2);
+            JLabel inventoryText = new JLabel("Inventory");
+            JLabel showCartText = new JLabel("Click on the cart icon to show items in your cart");
+            JLabel adsText = new JLabel("Ads");
+
+            JButton quitB = new JButton("Quit");
             JButton cartB = new JButton(cartImage);
             JButton checkoutB = new JButton("Checkout");
+
+            for (Product product : storeManager.showInventory()){
+                productCardsGrid.add(productCard(product, storeManager.checkStock(product)));
+            }
 
             checkoutB.addActionListener(new ActionListener() {
                 @Override
@@ -141,9 +151,6 @@ public class StoreVCart {
                 }
             });
 
-            JButton quitB = new JButton("Quit");
-            JLabel showCartText = new JLabel("Click on the cart icon to show items in your cart");
-            cartItemsGrid.setVisible(false);
             cartB.addActionListener(new ActionListener() {
 
                 // this method will be called when we click the button
@@ -152,61 +159,37 @@ public class StoreVCart {
                     if(cartItemsGrid.isVisible()){
                         cartItemsGrid.setVisible(false);
                         showCartText.setVisible(true);
-                        //buffer.setVisible(true);
                     }
                     else{
                         cartItemsGrid.setVisible(true);
                         showCartText.setVisible(false);
-                        //buffer.setVisible(false);
                     }
                 }});
 
-
-            buffer.add(adImage);
-            buffer.add(adImage2);
             buffer.setVisible(true);
 
-
-            //cartP.add(buffer,BorderLayout.WEST);
+            adsBorderLayout.add(buffer, BorderLayout.CENTER);
+            adsBorderLayout.add(adsText, BorderLayout.NORTH);
+            buffer.add(adImage);
+            buffer.add(adImage2);
             bodyPanel.add(cartP, BorderLayout.WEST);
             bodyPanel.add(inventoryP, BorderLayout.CENTER);
-            bodyPanel.add(buffer, BorderLayout.EAST);
-            bodyPanel.add(footerPanel, BorderLayout.SOUTH);
+            bodyPanel.add(adsBorderLayout, BorderLayout.EAST);
+            inventoryP.add(productCardsGrid, BorderLayout.CENTER);
+            inventoryP.add(inventoryText, BorderLayout.NORTH);
+            cartP.add(cartB, BorderLayout.NORTH);
+            cartP.add(cartItemsGrid, BorderLayout.CENTER);
+            cartP.add(checkoutB, BorderLayout.SOUTH);
+            headerPanel.add(headerLabel, BorderLayout.CENTER);
             footerPanel.add(showCartText, BorderLayout.WEST);
             footerPanel.add(quitB, BorderLayout.EAST);
-            cartP.add(cartB, BorderLayout.NORTH);
-            cartP.add(checkoutB, BorderLayout.SOUTH);
-            JPanel productCardsGrid = new JPanel(new GridLayout(3,3));
-
-            cartItemsGrid.setPreferredSize(new Dimension(10, 30));
-            cartP.add(cartItemsGrid, BorderLayout.CENTER);
-            for (Product product : storeManager.showInventory()){
-                productCardsGrid.add(productCard(product, storeManager.checkStock(product)));
-            }
-            /*
-            productCardsGrid.add(productCard("Apples", 1.3, 10, applesImage));
-            productCardsGrid.add(productCard("Oranges", 3.2, 4, orangesImage));
-            productCardsGrid.add(productCard("Lemons", 0.6, 34, lemonsImage));
-
-            cartItemsGrid.add(productCard("Apples", 1.3, 10, applesImage));
-            cartItemsGrid.add(productCard("Oranges", 3.2, 4, orangesImage));
-            cartItemsGrid.add(productCard("Lemons", 0.6, 34, lemonsImage));
-
-             */
-
-            inventoryP.add(productCardsGrid, BorderLayout.CENTER);
-            JLabel inventoryText = new JLabel("Inventory");
-            JLabel adsText = new JLabel("Ads");
-
-            inventoryP.add(inventoryText, BorderLayout.NORTH);
-            inventoryP.setBorder(BorderFactory.createLineBorder(Color.black));
-
-
-            headerPanel.add(headerLabel, BorderLayout.CENTER);
-            headerPanel.add(adsText, BorderLayout.EAST);
-
             mainPanel.add(headerPanel, BorderLayout.PAGE_START);
             mainPanel.add(bodyPanel, BorderLayout.CENTER);
+            mainPanel.add(footerPanel, BorderLayout.SOUTH);
+
+            cartItemsGrid.setPreferredSize(new Dimension(10, 30));
+            inventoryP.setBorder(BorderFactory.createLineBorder(Color.black));
+            
 
             frame.add(mainPanel);
             frame.pack();
