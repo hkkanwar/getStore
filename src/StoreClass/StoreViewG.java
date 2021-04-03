@@ -60,7 +60,7 @@ public class StoreViewG {
         JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel headerPanel = new JPanel(new BorderLayout());
         JPanel bodyPanel = new JPanel(new GridBagLayout());
-        JPanel cartP = new JPanel(new GridLayout(1,1));
+        JPanel cartP = new JPanel(new GridLayout(2,1));
         //icons
         ImageIcon appleImage = new ImageIcon(new ImageIcon("src/StoreClass/Apples.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
         ImageIcon cartImage = new ImageIcon(new ImageIcon("src/StoreClass/cart1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
@@ -75,7 +75,7 @@ public class StoreViewG {
         cartP.setVisible(true);
         cartP.setOpaque(true);
         JButton cartB = new JButton(cartImage);
-        cartText.addActionListener(new ActionListener() {
+        cartB.addActionListener(new ActionListener() {
 
             // this method will be called when we click the button
             @Override
@@ -103,15 +103,19 @@ public class StoreViewG {
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.insets = new Insets(0,20,15,20);
-        bodyPanel.add(cartText);
+        //bodyPanel.add(cartText);
         constraints.gridx = 0;
         constraints.gridy = 0;
-        bodyPanel.add(cartB);
-
+        bodyPanel.add(cartB, constraints);
+        //JPanel testing = productCard("Oranges", 20.0, 10, appleImageLabel);
+        //cartP.add(testing);
         constraints.gridx = 0;
         constraints.gridy = 1;
-        //constraints.gridheight=2;
+        constraints.gridheight=2;
         //constraints.gridwidth=1;
+        //constraints.ipadx = 40;
+        //constraints.ipady = 200;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
         bodyPanel.add(cartP,constraints);
 
         constraints.gridx = 1;
@@ -143,7 +147,8 @@ public class StoreViewG {
         card1.add(gridLayout, BorderLayout.PAGE_END);
         JPanel card2 = productCard("Apples", 12.2, 12, appleImageLabel);
         bodyPanel.add(card2, constraints);
-        bodyPanel.add(cartB,constraints);
+
+
         //bodyPanel.setBackground(Color.CYAN);
         bodyPanel.setOpaque(true);
 
