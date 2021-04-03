@@ -122,16 +122,17 @@ public class StoreVCart {
             JPanel inventoryP = new JPanel(new BorderLayout());
             JPanel cartP = new JPanel(new BorderLayout());
             JPanel cartItemsGrid = new JPanel(new GridLayout(3,1));
-            JPanel buffer = new JPanel(new GridLayout(2,1));
+            //JPanel buffer = new JPanel(new GridLayout(2,1));
 
 
             ImageIcon cartImage = new ImageIcon(new ImageIcon("src/StoreClass/cart1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
-            ImageIcon adIm = new ImageIcon(new ImageIcon("src/StoreClass/ad1.jpeg").getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT));
-            ImageIcon adIm2 = new ImageIcon(new ImageIcon("src/StoreClass/ad2.jpeg").getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT));
-            JLabel adImage = new JLabel(adIm);
-            JLabel adImage2 = new JLabel(adIm2);
+            //ImageIcon adIm = new ImageIcon(new ImageIcon("src/StoreClass/ad1.jpeg").getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT));
+            //ImageIcon adIm2 = new ImageIcon(new ImageIcon("src/StoreClass/ad2.jpeg").getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT));
+            //JLabel adImage = new JLabel(adIm);
+            //JLabel adImage2 = new JLabel(adIm2);
             JButton cartB = new JButton(cartImage);
             JButton checkoutB = new JButton("Checkout");
+            /*
             checkoutB.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
@@ -141,9 +142,11 @@ public class StoreVCart {
                 }
             });
 
+             */
+
             //JButton quitB = new JButton("Quit");
             JLabel showCartText = new JLabel("Click on the cart icon to show items in your cart");
-            cartItemsGrid.setBackground(Color.PINK);
+            //cartItemsGrid.setBackground(Color.PINK);
             cartItemsGrid.setVisible(false);
             cartB.addActionListener(new ActionListener() {
 
@@ -153,19 +156,22 @@ public class StoreVCart {
                     if(cartItemsGrid.isVisible()){
                         cartItemsGrid.setVisible(false);
                         showCartText.setVisible(true);
-                        buffer.setVisible(true);
+                        //buffer.setVisible(true);
                     }
                     else{
                         cartItemsGrid.setVisible(true);
                         showCartText.setVisible(false);
-                        buffer.setVisible(false);
+                        //buffer.setVisible(false);
                     }
                 }});
 
+            /*
             buffer.add(adImage);
             buffer.add(adImage2);
             buffer.setVisible(true);
-            cartP.add(buffer,BorderLayout.WEST);
+
+             */
+            //cartP.add(buffer,BorderLayout.WEST);
             bodyPanel.add(cartP, BorderLayout.WEST);
             bodyPanel.add(inventoryP, BorderLayout.CENTER);
             bodyPanel.add(footerPanel, BorderLayout.SOUTH);
@@ -227,7 +233,7 @@ public class StoreVCart {
 
 
 
-            checkout.pack();
+            //checkout.pack();
 
 
 
