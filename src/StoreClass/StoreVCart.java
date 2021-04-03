@@ -13,6 +13,7 @@ public class StoreVCart {
         private int cartID;
         private final JFrame frame;
 
+
         /**
          * Constructor for StoreView
          * @param storeManager    StoreManager object
@@ -55,11 +56,9 @@ public class StoreVCart {
                 // this method will be called when we click the button
                 @Override
                 public void actionPerformed(ActionEvent ae) {
-                    if(storeManager.checkStock(product) > 0) {
-                        storeManager.addItemToCart(product, 1, cartID);
-                        stockLabel.setText("Stock: " + Integer.toString(storeManager.checkStock(product)));
-                    }
-                    if (storeManager.checkStock(product) == 0) buttonAdd.setEnabled(false);
+                    storeManager.removeItemFromCart(product, 1, cartID);
+                    stockLabel.setText("Stock: " + Integer.toString(storeManager.checkStock(product)));
+                    if (storeManager.checkStock(product) > 0) buttonAdd.setEnabled(true);
                 }});
             description.add(nameLabel, BorderLayout.NORTH);
             description.add(priceLabel, BorderLayout.CENTER);
@@ -77,7 +76,7 @@ public class StoreVCart {
             frame.setTitle("Client StoreView");
 
             // create JLabels
-            JLabel headerLabel = new JLabel("Welcome to our Store! (ID:" + cartID + ") ");
+            JLabel headerLabel = new JLabel("Welcome to our Store! (ID:" + cartID + ")");
 
             //create Jpanels
             JPanel mainPanel = new JPanel(new BorderLayout());
@@ -87,6 +86,7 @@ public class StoreVCart {
             JPanel inventoryP = new JPanel(new BorderLayout());
             JPanel cartP = new JPanel(new BorderLayout());
             JPanel cartItemsGrid = new JPanel(new GridLayout(3,1));
+
 
             ImageIcon cartImage = new ImageIcon(new ImageIcon("src/StoreClass/cart1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
 
