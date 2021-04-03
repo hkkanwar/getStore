@@ -13,6 +13,7 @@ public class StoreVCart {
         private StoreManager storeManager;
         private int cartID;
         private final JFrame frame;
+        private final JFrame checkout;
         private final JPanel cartItemsGrid = new JPanel(new GridLayout(3,1)); //Add this to the constructor
 
         /**
@@ -24,6 +25,7 @@ public class StoreVCart {
             this.storeManager = storeManager;
             this.cartID = cartID;
             this.frame = new JFrame();
+            this.checkout = new JFrame();
         }
         /**
          * Fetches id of the cart
@@ -130,6 +132,15 @@ public class StoreVCart {
             JLabel adImage2 = new JLabel(adIm2);
             JButton cartB = new JButton(cartImage);
             JButton checkoutB = new JButton("Checkout");
+            checkoutB.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent actionEvent) {
+                    System.out.println("hii");
+                    checkout.setMinimumSize(new Dimension(300, 300));
+                    checkout.setVisible(true);
+                }
+            });
+
             //JButton quitB = new JButton("Quit");
             JLabel showCartText = new JLabel("Click on the cart icon to show items in your cart");
             cartItemsGrid.setBackground(Color.PINK);
@@ -212,6 +223,14 @@ public class StoreVCart {
             // the frame is not visible until we set it to be so
             frame.setVisible(true);
             //frame.setMinimumSize(new Dimension(300, 300));
+
+
+
+
+            checkout.pack();
+
+
+
         }
 
 
