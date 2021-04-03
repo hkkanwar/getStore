@@ -13,7 +13,7 @@ public class StoreVCart {
         private StoreManager storeManager;
         private int cartID;
         private final JFrame frame;
-        //private final JFrame checkout;
+        private final JFrame checkout;
         private final JPanel cartItemsGrid = new JPanel(new GridLayout(3,1)); //Add this to the constructor
 
         /**
@@ -25,7 +25,7 @@ public class StoreVCart {
             this.storeManager = storeManager;
             this.cartID = cartID;
             this.frame = new JFrame();
-            //this.checkout = new JFrame();
+            this.checkout = new JFrame();
         }
         /**
          * Fetches id of the cart
@@ -121,17 +121,17 @@ public class StoreVCart {
             JPanel bodyPanel = new JPanel(new BorderLayout());
             JPanel inventoryP = new JPanel(new BorderLayout());
             JPanel cartP = new JPanel(new BorderLayout());
-            //JPanel buffer = new JPanel(new GridLayout(2,1));
+            JPanel buffer = new JPanel(new GridLayout(2,1));
 
 
             ImageIcon cartImage = new ImageIcon(new ImageIcon("src/StoreClass/cart1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
-            //ImageIcon adIm = new ImageIcon(new ImageIcon("src/StoreClass/ad1.jpeg").getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT));
-            //ImageIcon adIm2 = new ImageIcon(new ImageIcon("src/StoreClass/ad2.jpeg").getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT));
-            //JLabel adImage = new JLabel(adIm);
-            //JLabel adImage2 = new JLabel(adIm2);
+            ImageIcon adIm = new ImageIcon(new ImageIcon("src/StoreClass/ad1.jpeg").getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT));
+            ImageIcon adIm2 = new ImageIcon(new ImageIcon("src/StoreClass/ad2.jpeg").getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT));
+            JLabel adImage = new JLabel(adIm);
+            JLabel adImage2 = new JLabel(adIm2);
             JButton cartB = new JButton(cartImage);
             JButton checkoutB = new JButton("Checkout");
-            /*
+
             checkoutB.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
@@ -140,8 +140,6 @@ public class StoreVCart {
                     checkout.setVisible(true);
                 }
             });
-
-             */
 
             //JButton quitB = new JButton("Quit");
             JLabel showCartText = new JLabel("Click on the cart icon to show items in your cart");
@@ -164,15 +162,16 @@ public class StoreVCart {
                     }
                 }});
 
-            /*
+
             buffer.add(adImage);
             buffer.add(adImage2);
             buffer.setVisible(true);
 
-             */
+
             //cartP.add(buffer,BorderLayout.WEST);
             bodyPanel.add(cartP, BorderLayout.WEST);
             bodyPanel.add(inventoryP, BorderLayout.CENTER);
+            bodyPanel.add(buffer, BorderLayout.EAST);
             bodyPanel.add(footerPanel, BorderLayout.SOUTH);
             footerPanel.add(showCartText, BorderLayout.WEST);
             cartP.add(cartB, BorderLayout.NORTH);
@@ -197,13 +196,14 @@ public class StoreVCart {
 
             inventoryP.add(productCardsGrid, BorderLayout.CENTER);
             JLabel inventoryText = new JLabel("Inventory");
+            JLabel adsText = new JLabel("Ads");
 
             inventoryP.add(inventoryText, BorderLayout.NORTH);
             inventoryP.setBorder(BorderFactory.createLineBorder(Color.black));
 
 
             headerPanel.add(headerLabel, BorderLayout.CENTER);
-
+            headerPanel.add(adsText, BorderLayout.EAST);
 
             mainPanel.add(headerPanel, BorderLayout.PAGE_START);
             mainPanel.add(bodyPanel, BorderLayout.CENTER);
@@ -228,14 +228,7 @@ public class StoreVCart {
             // the frame is not visible until we set it to be so
             frame.setVisible(true);
             //frame.setMinimumSize(new Dimension(300, 300));
-
-
-
-
-            //checkout.pack();
-
-
-
+            checkout.pack();
         }
 
 
