@@ -22,13 +22,25 @@ public class Inventory {
         ImageIcon applesImage = new ImageIcon(new ImageIcon("src/StoreClass/Apples.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
         ImageIcon orangesImage = new ImageIcon(new ImageIcon("src/StoreClass/Oranges.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
         ImageIcon lemonsImage = new ImageIcon(new ImageIcon("src/StoreClass/Lemons.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+        ImageIcon bananasImage = new ImageIcon(new ImageIcon("src/StoreClass/Bananas.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+        ImageIcon kiwiImage = new ImageIcon(new ImageIcon("src/StoreClass/Kiwi.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+        ImageIcon strawberriesImage = new ImageIcon(new ImageIcon("src/StoreClass/Strawberries.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+        ImageIcon watermelonsImage = new ImageIcon(new ImageIcon("src/StoreClass/Watermelons.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
         Product apple = new Product("Apple",01,0.5, applesImage);
         Product orange = new Product("Orange",02,1.2, orangesImage);
         Product lemon = new Product("Lemon",03,0.8, lemonsImage);
+        Product banana = new Product("Banana",04,0.3, bananasImage);
+        Product kiwi = new Product("Kiwi",05,2.3, kiwiImage);
+        Product straberry = new Product("Strawberry",06,0.1, strawberriesImage);
+        Product watermelon = new Product("Watermelon",07,1.0, watermelonsImage);
         productQuant = new HashMap<Product, Integer>();
-        addProduct(apple,10);
-        addProduct(orange,5);
-        addProduct(lemon,5);
+        addProduct(apple,42);
+        addProduct(orange,16);
+        addProduct(lemon,15);
+        addProduct(banana,30);
+        addProduct(kiwi,24);
+        addProduct(straberry,64);
+        addProduct(watermelon,9);
     }
 
     /** Gets the quantity of stock of a given product

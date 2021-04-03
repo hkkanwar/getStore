@@ -14,7 +14,7 @@ public class StoreVCart {
         private int cartID;
         private final JFrame frame;
         private final JFrame checkout;
-        private final JPanel cartItemsGrid = new JPanel(new GridLayout(3,1)); //Add this to the constructor
+        private final JPanel cartItemsGrid = new JPanel(new GridLayout(7,1)); //Add this to the constructor
 
         /**
          * Constructor for StoreView
@@ -141,9 +141,8 @@ public class StoreVCart {
                 }
             });
 
-            //JButton quitB = new JButton("Quit");
+            JButton quitB = new JButton("Quit");
             JLabel showCartText = new JLabel("Click on the cart icon to show items in your cart");
-            //cartItemsGrid.setBackground(Color.PINK);
             cartItemsGrid.setVisible(false);
             cartB.addActionListener(new ActionListener() {
 
@@ -174,9 +173,10 @@ public class StoreVCart {
             bodyPanel.add(buffer, BorderLayout.EAST);
             bodyPanel.add(footerPanel, BorderLayout.SOUTH);
             footerPanel.add(showCartText, BorderLayout.WEST);
+            footerPanel.add(quitB, BorderLayout.EAST);
             cartP.add(cartB, BorderLayout.NORTH);
             cartP.add(checkoutB, BorderLayout.SOUTH);
-            JPanel productCardsGrid = new JPanel(new GridLayout(2,2));
+            JPanel productCardsGrid = new JPanel(new GridLayout(3,3));
 
             cartItemsGrid.setPreferredSize(new Dimension(10, 30));
             cartP.add(cartItemsGrid, BorderLayout.CENTER);
