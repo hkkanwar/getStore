@@ -35,6 +35,12 @@ public class StoreVCart {
             return cartID;
         }
 
+    /**
+     *
+     * @param product Product object for the card
+     * @param stock int number of available stock
+     * @return a JPanel that's a BorderLayout of the productCard
+     */
         private JPanel productCard(Product product, int stock){
             JPanel borderLayout = new JPanel(new BorderLayout());
             JPanel gridLayout = new JPanel(new GridLayout(1,2));
@@ -91,6 +97,13 @@ public class StoreVCart {
             borderLayout.setBorder(BorderFactory.createLineBorder(Color.black));
             return borderLayout;
         }
+
+    /**
+     *
+     * @param product Product object for the card
+     * @param quantity int number of quantity in cart
+     * @return a JPanel that's a BorderLayout of the product card in the cart
+     */
         private JPanel productCardInCart(Product product, int quantity){
             JPanel borderLayout = new JPanel(new BorderLayout());
             JPanel description = new JPanel(new BorderLayout());
@@ -124,9 +137,9 @@ public class StoreVCart {
             JPanel productCardsGrid = new JPanel(new GridLayout(3,3));
 
 
-            ImageIcon cartImage = new ImageIcon(new ImageIcon("src/StoreClass/cart1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
-            ImageIcon adIm = new ImageIcon(new ImageIcon("src/StoreClass/ad1.jpeg").getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT));
-            ImageIcon adIm2 = new ImageIcon(new ImageIcon("src/StoreClass/ad2.jpeg").getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT));
+            ImageIcon cartImage = new ImageIcon(new ImageIcon("src/StoreClass/Images/cart1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
+            ImageIcon adIm = new ImageIcon(new ImageIcon("src/StoreClass/Images/ad1.jpeg").getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT));
+            ImageIcon adIm2 = new ImageIcon(new ImageIcon("src/StoreClass/Images/ad2.jpeg").getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT));
 
             JLabel adImage = new JLabel(adIm);
             JLabel adImage2 = new JLabel(adIm2);
@@ -189,7 +202,7 @@ public class StoreVCart {
 
             cartItemsGrid.setPreferredSize(new Dimension(10, 30));
             inventoryP.setBorder(BorderFactory.createLineBorder(Color.black));
-            
+
 
             frame.add(mainPanel);
             frame.pack();
