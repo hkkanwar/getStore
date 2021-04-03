@@ -13,7 +13,7 @@ public class StoreVCart {
         private StoreManager storeManager;
         private int cartID;
         private final JFrame frame;
-        private final JFrame checkout;
+        //private final JFrame checkout;
         private final JPanel cartItemsGrid = new JPanel(new GridLayout(3,1)); //Add this to the constructor
 
         /**
@@ -25,7 +25,7 @@ public class StoreVCart {
             this.storeManager = storeManager;
             this.cartID = cartID;
             this.frame = new JFrame();
-            this.checkout = new JFrame();
+            //this.checkout = new JFrame();
         }
         /**
          * Fetches id of the cart
@@ -121,7 +121,6 @@ public class StoreVCart {
             JPanel bodyPanel = new JPanel(new BorderLayout());
             JPanel inventoryP = new JPanel(new BorderLayout());
             JPanel cartP = new JPanel(new BorderLayout());
-            JPanel cartItemsGrid = new JPanel(new GridLayout(3,1));
             //JPanel buffer = new JPanel(new GridLayout(2,1));
 
 
@@ -252,3 +251,5 @@ public class StoreVCart {
     }
 
 }
+
+
