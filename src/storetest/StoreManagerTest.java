@@ -9,11 +9,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
+import java.awt.*;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 import StoreClass.StoreManager;
 import StoreClass.Product;
+
+import javax.swing.*;
 
 
 public class StoreManagerTest {
@@ -33,10 +36,13 @@ public class StoreManagerTest {
         // test fixture; executed before each test
         // creation of required objects, program state, etc.
         s1 = new StoreManager();
-        p1 = new Product("Apple",01,0.5);
-        p2 = new Product("Lemon",03,0.8);
-        p3 = new Product("Orange",02,1.2);
-        p4 = new Product("Kiwi",04,1.5);
+        ImageIcon applesImage = new ImageIcon(new ImageIcon("src/StoreClass/Apples.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+        ImageIcon orangesImage = new ImageIcon(new ImageIcon("src/StoreClass/Oranges.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+        ImageIcon lemonsImage = new ImageIcon(new ImageIcon("src/StoreClass/Lemons.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+        p1 = new Product("Apple",01,0.5, applesImage);
+        p2 = new Product("Lemon",03,0.8, lemonsImage);
+        p3 = new Product("Orange",02,1.2, orangesImage);
+        p4 = new Product("Kiwi",04,1.5, applesImage);
         cart1 = new HashMap<Product, Integer>();
         cart2 = new HashMap<Product, Integer>();
         cart1.put(p1, 10);

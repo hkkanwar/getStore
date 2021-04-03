@@ -5,6 +5,8 @@ package StoreClass;
  * @version 1.0
  */
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.HashMap;
 
 /**
@@ -16,9 +18,13 @@ public class Inventory {
 
     /** Default constructor for Inventory */
     public Inventory(){
-        Product apple = new Product("Apple",01,0.5);
-        Product orange = new Product("Orange",02,1.2);
-        Product lemon = new Product("Lemon",03,0.8);
+        //icons
+        ImageIcon applesImage = new ImageIcon(new ImageIcon("src/StoreClass/Apples.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+        ImageIcon orangesImage = new ImageIcon(new ImageIcon("src/StoreClass/Oranges.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+        ImageIcon lemonsImage = new ImageIcon(new ImageIcon("src/StoreClass/Lemons.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+        Product apple = new Product("Apple",01,0.5, applesImage);
+        Product orange = new Product("Orange",02,1.2, orangesImage);
+        Product lemon = new Product("Lemon",03,0.8, lemonsImage);
         productQuant = new HashMap<Product, Integer>();
         addProduct(apple,10);
         addProduct(orange,5);
