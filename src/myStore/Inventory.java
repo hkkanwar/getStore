@@ -19,13 +19,13 @@ public class Inventory {
     /** Default constructor for Inventory */
     public Inventory(){
         //icons
-        ImageIcon applesImage = new ImageIcon(new ImageIcon("src/StoreClass/Images/Apples.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
-        ImageIcon orangesImage = new ImageIcon(new ImageIcon("src/StoreClass/Images/Oranges.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
-        ImageIcon lemonsImage = new ImageIcon(new ImageIcon("src/StoreClass/Images/Lemons.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
-        ImageIcon bananasImage = new ImageIcon(new ImageIcon("src/StoreClass/Images/Bananas.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
-        ImageIcon kiwiImage = new ImageIcon(new ImageIcon("src/StoreClass/Images/Kiwi.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
-        ImageIcon strawberriesImage = new ImageIcon(new ImageIcon("src/StoreClass/Images/Strawberries.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
-        ImageIcon watermelonsImage = new ImageIcon(new ImageIcon("src/StoreClass/Images/Watermelons.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+        ImageIcon applesImage = new ImageIcon(new ImageIcon("src/myStore/Images/Apples.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+        ImageIcon orangesImage = new ImageIcon(new ImageIcon("src/myStore/Images/Oranges.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+        ImageIcon lemonsImage = new ImageIcon(new ImageIcon("src/myStore/Images/Lemons.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+        ImageIcon bananasImage = new ImageIcon(new ImageIcon("src/myStore/Images/Bananas.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+        ImageIcon kiwiImage = new ImageIcon(new ImageIcon("src/myStore/Images/Kiwi.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+        ImageIcon strawberriesImage = new ImageIcon(new ImageIcon("src/myStore/Images/Strawberries.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
+        ImageIcon watermelonsImage = new ImageIcon(new ImageIcon("src/myStore/Images/Watermelons.jpg").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT));
         Product apple = new Product("Apple",01,0.5, applesImage);
         Product orange = new Product("Orange",02,1.2, orangesImage);
         Product lemon = new Product("Lemon",03,0.8, lemonsImage);

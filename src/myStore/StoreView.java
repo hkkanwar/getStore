@@ -154,10 +154,10 @@ public class StoreView {
             JPanel cartSummary = new JPanel(new GridLayout(8,0));
 
             //images
-            ImageIcon cartImage = new ImageIcon(new ImageIcon("src/StoreClass/Images/cart1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
-            ImageIcon adIm = new ImageIcon(new ImageIcon("src/StoreClass/Images/ad1.jpeg").getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT));
-            ImageIcon adIm2 = new ImageIcon(new ImageIcon("src/StoreClass/Images/ad2.jpeg").getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT));
-            ImageIcon c = new ImageIcon(new ImageIcon("src/StoreClass/Images/secure-checkout.jpeg").getImage().getScaledInstance(250, 50, Image.SCALE_DEFAULT));
+            ImageIcon cartImage = new ImageIcon(new ImageIcon("src/myStore/Images/cart1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
+            ImageIcon adIm = new ImageIcon(new ImageIcon("src/myStore/Images/ad1.jpeg").getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT));
+            ImageIcon adIm2 = new ImageIcon(new ImageIcon("src/myStore/Images/ad2.jpeg").getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT));
+            ImageIcon c = new ImageIcon(new ImageIcon("src/myStore/Images/secure-checkout.jpeg").getImage().getScaledInstance(250, 50, Image.SCALE_DEFAULT));
 
             //labels
             JLabel adImage = new JLabel(adIm);
