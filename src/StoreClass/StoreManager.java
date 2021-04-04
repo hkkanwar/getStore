@@ -136,6 +136,26 @@ public class StoreManager {
     }
 
     /**
+     * Returns and prints the contents of a cart as a string
+     * @param cartID    int value of cart id
+     * @return ArrayList<String> productsArray
+     */
+    public ArrayList<String> cartItemsList(int cartID){
+        ShoppingCart shoppingCart = shoppingCartArray.get(cartID);
+        HashMap<Product, Integer> cart = shoppingCart.getCart();
+        ArrayList<String> productsArray = new ArrayList<String>();
+        int counter = 1;
+
+        for(Product item: cart.keySet()){
+            //sb = System.out.println("(" + productsArray.indexOf(item) + ") " + item.getName() + ", quantity: " + cart.get(item));
+            productsArray.add(String.format("(%d) %s @%d................. $%.2f \n", counter, item.getName(),cart.get(item), (cart.get(item)* item.getPrice())));
+            counter +=1;
+        }
+        return productsArray;
+    }
+
+
+    /**
      * Returns the items in the shopping cart back to the inventory
      * @param cartID the int representing the cart ID
      */
