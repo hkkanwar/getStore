@@ -120,14 +120,19 @@ public class StoreVCart {
             return borderLayout;
         }
 
+
         /**
          *Displays the entire store interface for the user to interact with.
          */
         public void displayGUI(){
+            //name frames
             frame.setTitle("Client StoreView");
+            checkout.setTitle("Time to checkout :)");
+
             JLabel headerLabel = new JLabel("Welcome to our Store! (ID:" + cartID + ")");
             cartItemsGrid.setVisible(false);
 
+            //panels
             JPanel mainPanel = new JPanel(new BorderLayout());
             JPanel headerPanel = new JPanel(new BorderLayout());
             JPanel footerPanel = new JPanel(new BorderLayout());
@@ -140,10 +145,13 @@ public class StoreVCart {
             JPanel productCardsGrid = new JPanel(new GridLayout(3,3));
             JPanel cartI = new JPanel(new GridLayout(8,0));
 
+            //images
             ImageIcon cartImage = new ImageIcon(new ImageIcon("src/StoreClass/Images/cart1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
             ImageIcon adIm = new ImageIcon(new ImageIcon("src/StoreClass/Images/ad1.jpeg").getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT));
             ImageIcon adIm2 = new ImageIcon(new ImageIcon("src/StoreClass/Images/ad2.jpeg").getImage().getScaledInstance(100, 150, Image.SCALE_DEFAULT));
             ImageIcon c = new ImageIcon(new ImageIcon("src/StoreClass/Images/secure-checkout.jpeg").getImage().getScaledInstance(250, 50, Image.SCALE_DEFAULT));
+
+            //labels
             JLabel adImage = new JLabel(adIm);
             JLabel adImage2 = new JLabel(adIm2);
             JLabel seCheck = new JLabel(c);
@@ -184,6 +192,7 @@ public class StoreVCart {
                     JLabel total = new JLabel("TOTAL: $"+ String.format("%.2f",payment));
                     if(payment>0){payB.setEnabled(true);}
                     cartI.add(total);
+
                     checkout.setMinimumSize(new Dimension(300, 300));
                     checkout.setVisible(true);
                 }
@@ -206,6 +215,7 @@ public class StoreVCart {
 
             buffer.setVisible(true);
 
+            //adding components to main frame
             adsBorderLayout.add(buffer, BorderLayout.CENTER);
             adsBorderLayout.add(adsText, BorderLayout.NORTH);
             buffer.add(adImage);
@@ -250,7 +260,7 @@ public class StoreVCart {
             frame.setVisible(true);
 
 
-            //checkout pay button
+            //checkout frame components
             payB.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
