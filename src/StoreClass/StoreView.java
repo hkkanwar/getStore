@@ -1,5 +1,11 @@
 package StoreClass;
 
+/**
+ * @author Harsimran Kanwar 101143556,
+ * @author Hussein Elmokdad 101171490
+ * @version 1.0
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,7 +19,7 @@ public class StoreView {
         private int cartID;
         private final JFrame frame;
         private final JFrame checkout;
-        private final JPanel cartItemsGrid = new JPanel(new GridLayout(7,1)); //Add this to the constructor
+        private final JPanel cartItemsGrid;
 
         /**
          * Constructor for StoreView
@@ -25,6 +31,7 @@ public class StoreView {
             this.cartID = cartID;
             this.frame = new JFrame();
             this.checkout = new JFrame();
+            this.cartItemsGrid = new JPanel(new GridLayout(7,1));
         }
         /**
          * Fetches id of the cart
@@ -35,7 +42,8 @@ public class StoreView {
         }
 
         /**
-         *
+         * Returns a JPanel (BorderLayout) that displays information about a product, such as name,
+         * stock, price, image, and the ability to add/remove from cart
          * @param product Product object for the card
          * @param stock int number of available stock
          * @return a JPanel that's a BorderLayout of the productCard
@@ -98,7 +106,8 @@ public class StoreView {
         }
 
         /**
-         *
+         * Returns a JPanel (BorderLayout) that displays information about a product in the cart,
+         * such as name, price, quantity, and image
          * @param product Product object for the card
          * @param quantity int number of quantity in cart
          * @return a JPanel that's a BorderLayout of the product card in the cart
@@ -142,7 +151,7 @@ public class StoreView {
             JPanel buffer = new JPanel(new GridLayout(2,1));
             JPanel adsBorderLayout = new JPanel(new BorderLayout());
             JPanel productCardsGrid = new JPanel(new GridLayout(3,3));
-            JPanel cartI = new JPanel(new GridLayout(8,0));
+            JPanel cartSummary = new JPanel(new GridLayout(8,0));
 
             //images
             ImageIcon cartImage = new ImageIcon(new ImageIcon("src/StoreClass/Images/cart1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
@@ -159,24 +168,27 @@ public class StoreView {
             JLabel adsText = new JLabel("Ads");
 
             JButton quitB = new JButton("Quit");
+            JButton cartB = new JButton(cartImage);
+            JButton checkoutB = new JButton("Checkout");
+            JButton payB = new JButton("Pay Now");
+
+            payB.setEnabled(false);
+
+            for (Product product : storeManager.showInventory()){
+                productCardsGrid.add(productCard(product, storeManager.checkStock(product)));
+            }
+
             quitB.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
                     if (JOptionPane.showConfirmDialog(frame, "Are you sure you want to quit?") == JOptionPane.OK_OPTION) {
                         frame.dispose();
                         frame.setVisible(false);
+                        storeManager.returnItemsToInventory(getCartID()); // Returns the items in cart back to the inventory
                         System.out.print("Program exited, have a great day!");
                         System.exit(0);
                     }
                 }});
-            JButton cartB = new JButton(cartImage);
-            JButton checkoutB = new JButton("Checkout");
-            JButton payB = new JButton("Pay Now");
-            payB.setEnabled(false);
-
-            for (Product product : storeManager.showInventory()){
-                productCardsGrid.add(productCard(product, storeManager.checkStock(product)));
-            }
 
             checkoutB.addActionListener(new ActionListener() {
                 @Override
@@ -185,15 +197,16 @@ public class StoreView {
 
                     for (String s : storeManager.cartItemsList(cartID)) {
                         JLabel item = new JLabel("  " +s);
-                        cartI.add(item);
+                        cartSummary.add(item);
                     }
                     double payment = storeManager.processTransaction(storeManager.getCart(cartID), cartID);
                     JLabel total = new JLabel("TOTAL: $"+ String.format("%.2f",payment));
                     if(payment>0){payB.setEnabled(true);}
-                    cartI.add(total);
+                    cartSummary.add(total);
 
                     checkout.setMinimumSize(new Dimension(300, 300));
                     checkout.setVisible(true);
+                    frame.setVisible(false);
                 }
             });
 
@@ -234,6 +247,12 @@ public class StoreView {
             mainPanel.add(bodyPanel, BorderLayout.CENTER);
             mainPanel.add(footerPanel, BorderLayout.SOUTH);
 
+            //adding components to the checkout frame
+            checkoutP.add(seCheck, BorderLayout.NORTH);
+            checkoutP.add(cartSummary);
+            checkoutP.add(payB,BorderLayout.PAGE_END);
+            checkout.add(checkoutP);
+
             cartItemsGrid.setPreferredSize(new Dimension(10, 30));
             inventoryP.setBorder(BorderFactory.createLineBorder(Color.black));
 
@@ -255,9 +274,23 @@ public class StoreView {
                     }
                 }
             });
+
+            checkout.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent we) {
+                    for (String s : storeManager.cartItemsList(cartID)) {
+                        // If the user is about to checkout but decides to go back
+                        // it'll remove the items in cartSummary (not the actual cart)
+                        cartSummary.remove(0);
+                    }
+                    cartSummary.remove(0); // Removes total
+
+                    frame.setVisible(true);
+                }
+            });
+
             // the frame is not visible until we set it to be so
             frame.setVisible(true);
-
 
             //checkout frame components
             payB.addActionListener(new ActionListener() {
@@ -277,28 +310,13 @@ public class StoreView {
                     }
                 }
             });
-
-
-            checkoutP.add(seCheck, BorderLayout.NORTH);
-            checkoutP.add(cartI);
-            checkoutP.add(payB,BorderLayout.PAGE_END);
-
-            checkout.add(checkoutP);
-
-
             //frame.setMinimumSize(new Dimension(300, 300));
             checkout.pack();
         }
 
-
-
-
     public static void main(String[] args) {
         StoreManager sm = new StoreManager();
         StoreView sv1 = new StoreView(sm, sm.assignNewCartID());
-        //StoreView sv2 = new StoreView(sm, sm.assignNewCartID());
-        //StoreView sv3 = new StoreView(sm, sm.assignNewCartID());
-        //StoreView[] users = {sv1, sv2, sv3};
         sv1.displayGUI();
     }
 
