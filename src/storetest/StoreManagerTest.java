@@ -13,8 +13,8 @@ import java.awt.*;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
-import StoreClass.StoreManager;
-import StoreClass.Product;
+import myStore.StoreManager;
+import myStore.Product;
 
 import javax.swing.*;
 

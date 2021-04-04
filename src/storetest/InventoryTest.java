@@ -8,8 +8,8 @@ package storetest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import StoreClass.Inventory;
-import StoreClass.Product;
+import myStore.Inventory;
+import myStore.Product;
 
 import javax.swing.*;
 import java.awt.*;
