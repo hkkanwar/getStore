@@ -152,6 +152,7 @@ public class StoreView {
             JPanel adsBorderLayout = new JPanel(new BorderLayout());
             JPanel productCardsGrid = new JPanel(new GridLayout(3,3));
             JPanel cartSummary = new JPanel(new GridLayout(8,0));
+            JPanel invT = new JPanel(new GridLayout(1,2));
 
             //images
             ImageIcon cartImage = new ImageIcon(new ImageIcon("src/myStore/Images/cart1.png").getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
@@ -166,7 +167,7 @@ public class StoreView {
             JLabel inventoryText = new JLabel("Inventory");
             JLabel showCartText = new JLabel("Click on the cart icon to show items in your cart");
             JLabel adsText = new JLabel("Ads");
-
+            JLabel invItems = new JLabel("Displaying Items: " + Integer.toString(storeManager.getInventoryCount()));
             JButton quitB = new JButton("Quit");
             JButton cartB = new JButton(cartImage);
             JButton checkoutB = new JButton("Checkout");
@@ -194,7 +195,8 @@ public class StoreView {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
                     System.out.println("Opening checkout frame");
-
+                    JLabel itemNum = new JLabel("Total Items: " +Integer.toString(storeManager.getCartCount(cartID)));
+                    cartSummary.add(itemNum);
                     for (String s : storeManager.cartItemsList(cartID)) {
                         JLabel item = new JLabel("  " +s);
                         cartSummary.add(item);
@@ -227,6 +229,9 @@ public class StoreView {
 
             buffer.setVisible(true);
 
+            //test
+            invT.add(inventoryText,BorderLayout.WEST);
+            invT.add(invItems,BorderLayout.CENTER);
             //adding components to main frame
             adsBorderLayout.add(buffer, BorderLayout.CENTER);
             adsBorderLayout.add(adsText, BorderLayout.NORTH);
@@ -236,7 +241,8 @@ public class StoreView {
             bodyPanel.add(inventoryP, BorderLayout.CENTER);
             bodyPanel.add(adsBorderLayout, BorderLayout.EAST);
             inventoryP.add(productCardsGrid, BorderLayout.CENTER);
-            inventoryP.add(inventoryText, BorderLayout.NORTH);
+            //inventoryP.add(inventoryText, BorderLayout.NORTH);
+            inventoryP.add(invT, BorderLayout.NORTH);
             cartP.add(cartB, BorderLayout.NORTH);
             cartP.add(cartItemsGrid, BorderLayout.CENTER);
             cartP.add(checkoutB, BorderLayout.SOUTH);

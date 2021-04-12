@@ -98,24 +98,24 @@ public class InventoryTest {
      */
     @Test
     public void testRemoveProduct() {
-        i1.removeProduct(p1.getId(),4);
-        i1.removeProduct(p2.getId(),1);
+        i1.removeProductQuantity(p1,4);
+        i1.removeProductQuantity(p2,1);
         //remove product quantity given product id
         assertEquals(6,i1.getProductQuantity(p1.getId()),"bug in testRemoveProduct method, product quantity not removed as expected");
         assertEquals(4,i1.getProductQuantity(p2.getId()),"bug in testRemoveProduct method, product quantity not removed as expected");
 
         //empty inventory for the product completely
-        i1.removeProduct(p3.getId(),10);
-        i1.removeProduct(p4.getId(),25);
+        i1.removeProductQuantity(p3,10);
+        i1.removeProductQuantity(p4,25);
         assertEquals(0,i1.getProductQuantity(p3.getId()),"bug in testRemoveProduct method, product quantity not removed as expected");
         assertEquals(0,i1.getProductQuantity(p4.getId()),"bug in testRemoveProduct method, product quantity not removed as expected");
 
-        i1.removeProduct(p4.getId(), 5);
+        i1.removeProductQuantity(p4, 5);
         //check that product quantity is still 0 (corner case)
         assertEquals(0,i1.getProductQuantity(p4.getId()),"bug in testRemoveProduct method, product quantity not removed as expected");
 
         //check what happens with invalid productId (corner case)
-        i1.removeProduct(p5.getId(), 10);
+        i1.removeProductQuantity(p5, 10);
         //ensure that this product never existed in inventory
         assertFalse(i1.getProductQuant().containsKey(p5),"product somehow exists in our inventory?");
 

@@ -156,6 +156,25 @@ public class StoreManager {
 
 
     /**
+     * Returns count of unique items in inventory
+     * @return inventory.getNumOfProducts()   int value of the items in inventory
+     */
+    public int getInventoryCount(){
+        return inventory.getNumOfProducts();
+    }
+
+
+    /**
+     * Returns count of unique items in cart
+     * @param cartID the int representing the cart ID
+     * @return shoppingCartArray.get(cartID).getNumOfProducts() int value of the items in cart
+     */
+    public int getCartCount(int cartID){
+        return shoppingCartArray.get(cartID).getNumOfProducts();
+    }
+
+
+    /**
      * Returns the items in the shopping cart back to the inventory
      * @param cartID the int representing the cart ID
      */
