@@ -151,7 +151,7 @@ public class StoreView {
             JPanel buffer = new JPanel(new GridLayout(2,1));
             JPanel adsBorderLayout = new JPanel(new BorderLayout());
             JPanel productCardsGrid = new JPanel(new GridLayout(3,3));
-            JPanel cartSummary = new JPanel(new GridLayout(8,0));
+            JPanel cartSummary = new JPanel(new GridLayout(10,0));
             JPanel invT = new JPanel(new GridLayout(1,2));
 
             //images
