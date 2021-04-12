@@ -97,7 +97,7 @@ public class StoreManager {
      */
     public int assignNewCartID(){
         cartIdCounter++;
-        ShoppingCart newCart = new ShoppingCart();
+        ShoppingCart newCart = new ShoppingCart(this, cartIdCounter);
         shoppingCartArray.add(newCart);
         return cartIdCounter;
     }
