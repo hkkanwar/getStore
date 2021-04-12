@@ -9,8 +9,7 @@ import java.util.HashMap;
 
 public class ShoppingCart implements ProductStockContainer{
     private HashMap<Product, Integer> cart;
-    //new stuff
-    private static StoreManager sm; // Should we make this static since they all share the same store manager?go for it:)
+    private static StoreManager sm;
     private int cartID;
 
     /**
@@ -30,7 +29,11 @@ public class ShoppingCart implements ProductStockContainer{
         return cart;
     }
 
-
+    /**
+     * Gets the quantity/stock of a product in the cart
+     * @param product the object of type Product to check for
+     * @return the quantity of the product
+     */
     public int getStock(Product product){
         for(Product productInCart: cart.keySet()){
             if (productInCart.equals(product)){
@@ -53,10 +56,22 @@ public class ShoppingCart implements ProductStockContainer{
         return 0;
     }
 
+    /**
+     * Adds item(s) to the cart and updates inventory accordingly.
+     * Returns nothing
+     * @param product   Product object to add to cart
+     * @param quantity  int value of amount to add to cart
+     */
     public void addProductQuantity(Product product, int quantity){
         sm.addItemToCart(product, quantity, cartID);
     }
 
+    /**
+     * Removes item(s) from the cart and updates inventory accordingly.
+     * Returns nothing
+     * @param product   Product object to remove
+     * @param quantity  int value of amount needed to remove from cart
+     */
     public void removeProductQuantity(Product product, int quantity){
         sm.removeItemFromCart(product, quantity, cartID);
     }
