@@ -12,7 +12,7 @@ import java.util.HashMap;
 /**
  * Inventory Class
  * */
-public class Inventory {
+public class Inventory implements ProductStockContainer {
 
     private HashMap<Product, Integer> productQuant;
 
@@ -31,23 +31,23 @@ public class Inventory {
         Product lemon = new Product("Lemon",03,0.8, lemonsImage);
         Product banana = new Product("Banana",04,0.3, bananasImage);
         Product kiwi = new Product("Kiwi",05,2.3, kiwiImage);
-        Product straberry = new Product("Strawberry",06,0.1, strawberriesImage);
+        Product strawberry = new Product("Strawberry",06,0.1, strawberriesImage);
         Product watermelon = new Product("Watermelon",07,1.0, watermelonsImage);
         productQuant = new HashMap<Product, Integer>();
-        addProduct(apple,42);
-        addProduct(orange,16);
-        addProduct(lemon,15);
-        addProduct(banana,30);
-        addProduct(kiwi,24);
-        addProduct(straberry,64);
-        addProduct(watermelon,9);
+        addProductQuantity(apple,42);
+        addProductQuantity(orange,16);
+        addProductQuantity(lemon,15);
+        addProductQuantity(banana,30);
+        addProductQuantity(kiwi,24);
+        addProductQuantity(strawberry,64);
+        addProductQuantity(watermelon,9);
     }
 
     /** Gets the quantity of stock of a given product
      * @param productId     int value of the id for the product
      * @return quantity of stock
      */
-    public int getStock(int productId){
+    public int getProductQuantity(int productId){
         for(Product key: productQuant.keySet()){
             if(key.getId() == productId){
                 return productQuant.get(key);
@@ -56,7 +56,7 @@ public class Inventory {
         return 0;
     }
 
-    /** Gets the stock of product given productId
+    /** Gets the complete product object given productId
      * @param productId     int value of the id for the product
      * @return product object of given id
      */
@@ -69,13 +69,22 @@ public class Inventory {
         return null;
     }
 
+    /** Returns the total number of unique products
+     * in inventory.
+     * @return productQuant.size()  int value of size of inventory HashMap
+     * */
+    public int getNumOfProducts(){
+        return productQuant.size();
+    }
+
+
     /** Adds product to hashmap. The product is stored as the key and
      * quantity is stored as the value. In case of duplicate, it will update
      * quantity of said product.Returns nothing
      * @param product   product object to add
      * @param quantity  int value for amount to add
      */
-    public void addProduct(Product product, int quantity){
+    public void addProductQuantity(Product product, int quantity){
         if(productQuant.containsKey(product)){
             productQuant.replace(product, productQuant.get(product) + quantity);
         }
@@ -84,16 +93,13 @@ public class Inventory {
 
     /** Removes product quantity from HashMap given ProductID and quantity to be removed.
      * If the quantity is 0, it will stay 0. Returns nothing.
-     * @param productId     int value of id for product object
+     * @param product       Product object to remove
      * @param quantity      int value of amount to remove
      * */
-    public void removeProduct(int productId, int quantity) {
-        for(Product key: productQuant.keySet()){
-            if(key.getId() == productId){
-                productQuant.replace(key, (productQuant.get(key) - quantity));
-                if (productQuant.get(key) < 0) productQuant.replace(key, 0);
-            }
-        }
+    public void removeProductQuantity(Product product, int quantity) {
+        productQuant.replace(product, (productQuant.get(product) - quantity));
+        if (productQuant.get(product) < 0) productQuant.replace(product, 0);
+
     }
 
     /**

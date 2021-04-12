@@ -27,7 +27,7 @@ public class StoreManager {
      * @param product   Product object to check for
      * @return int number of stock
      */
-    public int checkStock(Product product){ return inventory.getStock(product.getId()); }
+    public int checkStock(Product product){ return inventory.getProductQuantity(product.getId()); }
 
     /**
      * Process the transaction by printing out a summary of the
@@ -61,7 +61,7 @@ public class StoreManager {
                 cart.replace(product, cart.get(product) + quantity);
             }
             else cart.put(product, quantity);
-            inventory.removeProduct(product.getId(), quantity);
+            inventory.removeProductQuantity(product, quantity);
         }
     }
 
@@ -80,7 +80,7 @@ public class StoreManager {
         else actualQuantity = quantity;
         cart.replace(product, (cart.get(product) - quantity));
         if (cart.get(product) <= 0) cart.remove(product);
-        inventory.addProduct(product, actualQuantity);
+        inventory.addProductQuantity(product, actualQuantity);
     }
 
     /**
@@ -161,7 +161,7 @@ public class StoreManager {
      */
     public void returnItemsToInventory(int cartID){
         for (Product product : getCart(cartID).keySet()){
-            inventory.addProduct(product, getCart(cartID).get(product));
+            inventory.addProductQuantity(product, getCart(cartID).get(product));
         }
     }
 
