@@ -49,11 +49,11 @@ public class InventoryTest {
     @Test
     public void testGetStock() {
         //productId exists
-        assertEquals(10,i1.getProductQuantity(01),"bug in getStock method, returning wrong value");
-        assertEquals(5,i1.getProductQuantity(02),"bug in getStock method, returning wrong value");
+        assertEquals(10,i1.getProductQuantity(p1),"bug in getStock method, returning wrong value");
+        assertEquals(5,i1.getProductQuantity(p2),"bug in getStock method, returning wrong value");
         //this productId does not exist in inventory, should return 0 (corner case)
-        assertEquals(0,i1.getProductQuantity(04),"bug in getStock method, returning wrong value");
-        assertEquals(0,i1.getProductQuantity(-45),"bug in getStock method, returning wrong value");
+        assertEquals(0,i1.getProductQuantity(p3),"bug in getStock method, returning wrong value");
+        assertEquals(0,i1.getProductQuantity(p4),"bug in getStock method, returning wrong value");
     }
 
     /**
@@ -83,8 +83,8 @@ public class InventoryTest {
         i1.addProductQuantity(p1,4);
         i1.addProductQuantity(p2,7);
         //check that product quantity gets updated since product already exist (corner case)
-        assertEquals(14,i1.getProductQuantity(p1.getId()),"bug in testAddProduct method,product not updated");
-        assertEquals(12,i1.getProductQuantity(p2.getId()),"bug in testAddProduct method, product not updated");
+        assertEquals(14,i1.getProductQuantity(p1),"bug in testAddProduct method,product not updated");
+        assertEquals(12,i1.getProductQuantity(p2),"bug in testAddProduct method, product not updated");
 
         i1.addProductQuantity(p3,10);
         i1.addProductQuantity(p4, 25);
@@ -101,18 +101,18 @@ public class InventoryTest {
         i1.removeProductQuantity(p1,4);
         i1.removeProductQuantity(p2,1);
         //remove product quantity given product id
-        assertEquals(6,i1.getProductQuantity(p1.getId()),"bug in testRemoveProduct method, product quantity not removed as expected");
-        assertEquals(4,i1.getProductQuantity(p2.getId()),"bug in testRemoveProduct method, product quantity not removed as expected");
+        assertEquals(6,i1.getProductQuantity(p1),"bug in testRemoveProduct method, product quantity not removed as expected");
+        assertEquals(4,i1.getProductQuantity(p2),"bug in testRemoveProduct method, product quantity not removed as expected");
 
         //empty inventory for the product completely
         i1.removeProductQuantity(p3,10);
         i1.removeProductQuantity(p4,25);
-        assertEquals(0,i1.getProductQuantity(p3.getId()),"bug in testRemoveProduct method, product quantity not removed as expected");
-        assertEquals(0,i1.getProductQuantity(p4.getId()),"bug in testRemoveProduct method, product quantity not removed as expected");
+        assertEquals(0,i1.getProductQuantity(p3),"bug in testRemoveProduct method, product quantity not removed as expected");
+        assertEquals(0,i1.getProductQuantity(p4),"bug in testRemoveProduct method, product quantity not removed as expected");
 
         i1.removeProductQuantity(p4, 5);
         //check that product quantity is still 0 (corner case)
-        assertEquals(0,i1.getProductQuantity(p4.getId()),"bug in testRemoveProduct method, product quantity not removed as expected");
+        assertEquals(0,i1.getProductQuantity(p4),"bug in testRemoveProduct method, product quantity not removed as expected");
 
         //check what happens with invalid productId (corner case)
         i1.removeProductQuantity(p5, 10);

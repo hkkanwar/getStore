@@ -7,7 +7,7 @@ package myStore;
 
 public interface ProductStockContainer {
 
-    int getProductQuantity(int productId); //aka getStock
+    int getProductQuantity(Product product); //aka getStock
     void addProductQuantity(Product product, int quantity);
     void removeProductQuantity(Product product, int quantity);
     int getNumOfProducts();

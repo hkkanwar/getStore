@@ -27,7 +27,7 @@ public class StoreManager {
      * @param product   Product object to check for
      * @return int number of stock
      */
-    public int checkStock(Product product){ return inventory.getProductQuantity(product.getId()); }
+    public int checkStock(Product product){ return inventory.getProductQuantity(product); }
 
     /**
      * Process the transaction by printing out a summary of the

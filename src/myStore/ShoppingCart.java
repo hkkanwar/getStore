@@ -29,31 +29,17 @@ public class ShoppingCart implements ProductStockContainer{
         return cart;
     }
 
-    /**
-     * Gets the quantity/stock of a product in the cart
-     * @param product the object of type Product to check for
-     * @return the quantity of the product
-     */
-    public int getStock(Product product){
-        for(Product productInCart: cart.keySet()){
-            if (productInCart.equals(product)){
-                return cart.get(product);
-            }
-        }
-        return 0;
-    }
 
     /** Gets the quantity of stock of a given product
-     * @param productId     int value of the id for the product
+     * @param product    product object
      * @return quantity of stock
      */
-    public int getProductQuantity(int productId){
-        for(Product key: cart.keySet()){
-            if(key.getId() == productId){
-                return cart.get(key);
-            }
+    public int getProductQuantity(Product product){
+        int quant = 0;
+        if (cart.containsKey(product)){
+            quant = cart.get(product);
         }
-        return 0;
+        return quant;
     }
 
     /**

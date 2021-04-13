@@ -44,16 +44,15 @@ public class Inventory implements ProductStockContainer {
     }
 
     /** Gets the quantity of stock of a given product
-     * @param productId     int value of the id for the product
+     * @param product     product object to find quantity for
      * @return quantity of stock
      */
-    public int getProductQuantity(int productId){
-        for(Product key: productQuant.keySet()){
-            if(key.getId() == productId){
-                return productQuant.get(key);
-            }
+    public int getProductQuantity(Product product){
+        int quant = 0;
+        if (productQuant.containsKey(product)){
+             quant = productQuant.get(product);
         }
-        return 0;
+        return quant;
     }
 
     /** Gets the complete product object given productId
