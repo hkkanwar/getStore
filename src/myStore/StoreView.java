@@ -289,8 +289,8 @@ public class StoreView {
                         // it'll remove the items in cartSummary (not the actual cart)
                         cartSummary.remove(0);
                     }
-                    cartSummary.remove(0); // Removes total
-
+                    cartSummary.remove(0); // Removes total items
+                    cartSummary.remove(0); // Removes total price
                     frame.setVisible(true);
                 }
             });
